@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulario2</title>
+</head>
+<body>
+    
+    <div class="imags">
+        <img src="./un verano sin ti.jpg" alt="Vuelo" width="400" height="600">
+    </div>
+    <form> 
+        <div class="Basico">
+            <h1>Encuesta de verano</h1>
+        </div>
+        <div class="Correo">
+            <label for="correo"> correo electronico</label>
+            <input type="email" placeholder="Correo Personal">
+        </div>
+    
+        <div class="Nombre">
+            <label for="name">Nombre</label>
+            <input class="controls" type="text" name="nombre" id="Nombre" minlength="2"
+            maxlength="20" placeholder="Nombre Completo" required >
+        </div>
+        <div class="URL">
+            <label for="URL">URL</label>
+            <input class="controls" type="url" name="url" id="url" placeholder="Escribe la url de tu pagina">
+            
+        </div>
+        <div class="Fecha">
+            <label for="Fecha">Fecha</label>
+            <input class="controls" type="date" name="Fecha" id="Fecha" placeholder ="Fecha Actual" required>
+        </div>
+        <div class="Hora">
+            <label for="hora">Tiempo</label>
+            <input  class="controls" type="time" name="Hora" id="Hora">
+        </div>
+        <div class="Mes">
+            <label for="M">Mes</label>
+            <input class="controls" type="month" name="Mes" id="Mes" >
+        </div>
+        <div class="Semana">
+            <label for="semana">Semana</label>
+            <input class="controls" type="week" name="semana" id="semana">  
+        </div>
+        <div class="Num">
+            <label for="Numero">Numero</label>
+            <input  class="controls" type="number" name="Numero" id="Numero" min="-10" max="10">  
+        </div>
+        <div class="Telefono">
+            <label for="Telefono">Telefono</label>
+            <input class="controls" type="tel" name="Tel" id="Tel">
+        </div>
+        <div class="Busqueda">
+            <label for="Buscar">Termino de Busqueda</label>
+            <input type="search" name="Buscar" id="Buscar">
+        </div>
+        <div class="color">
+            <label for="Color">Color Favorito</label>
+            <input type="color" name="Color" id="Color">
+        </div>
+        
+        <div class="Link">
+            <li><a href="portada.html">Click para ver datos el creador</a></li>
+        </div>
+    </form>
+   
+</body>
+</html>

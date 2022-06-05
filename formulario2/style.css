@@ -1,0 +1,209 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.imags
+{
+    position: fixed;
+    
+}
+.Basico h1
+{
+    color: black;
+    position: relative;
+    left: 50px;
+}
+
+.Correo
+{
+    right: 290px;
+    top: -90px;
+    position: relative;
+    width: 180px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Nombre
+{
+    left:-90px;
+    top: -250px;
+    position: relative;
+    width: 180px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.URL
+{
+    position: relative;
+    right: 290px;
+    top: -370px;
+    width: 180px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Fecha
+{
+    position: relative;
+    left: -90px;
+    top: -530px;
+    width: 180px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Hora
+{
+    position: relative;
+    right: 300px;
+    top: -650px;
+    width: 150px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Mes
+{
+    position: relative;
+    left: -99px;
+    top: -815px;
+    width: 185px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+.Semana
+{
+    position: relative;
+    right: 290px;
+    top: -930px;
+    width: 170px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Num
+{
+    position: relative;
+    right: 140px;
+    top: -10955px;
+    width: 110px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Telefono
+{
+    
+    position: relative;
+    right: 285px;
+    top: -1205px;
+    width: 180px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.Busqueda
+{
+    position: relative;
+    right: 90px ;
+    width: 180px;
+    top: -1470px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+
+.color
+{
+    position: relative;
+    right: 90px;
+    width: 160px;
+    top: -1540px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
+.controls
+{
+   width: 100%;
+   padding: 10px;
+   border-radius: 4px;
+   margin-bottom: 16px; 
+   border: 1px solid #c51f9e;
+   font-family:'Franklin Gothic Medium';
+   font-size: 10px;
+   
+}
+
+.Link
+{
+    position: relative;
+    right: 210px;
+    top: -1620px;
+    width: 180px;
+    background: rgb(213, 115, 214);
+    padding: 10px;
+    margin: auto;
+    margin-top:100px ;
+    border-radius: 4px;
+    font-family: fantasy;
+    color: azure;
+}
