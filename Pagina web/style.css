@@ -1,0 +1,230 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' sans-serif;
+}
+
+body
+{
+    background: rgb(214, 236, 150);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.Contenedor
+{
+    position: relative;
+    width: 1000%;
+    max-width: 650px;
+    min-height: 200px;
+    background: #fff;
+    margin: 50px;
+    display: grid;
+    right: 300px ;
+    height: 1200px;
+}
+
+.Marca h1
+{
+    color: rgb(0, 0, 0);
+    font-family:fantasy;
+    position: relative;
+    left: 250px;
+    top: 40px;
+}
+.clothes1
+{
+    position: relative;
+    left: 16px;
+    top: 70px;
+    font-family:'Lucida Sans';
+}
+
+.clothes2
+{
+    position: relative;
+    left: 230px;
+    top: -385px; 
+    font-family:'Lucida Sans';
+}
+
+.clothes3
+{
+    position: relative;
+    left: 450px;
+    top: -848px;
+    font-family:'Lucida Sans'; 
+}
+
+.clothes4
+{
+    position: relative;
+    left: 440px;
+    top: -800px;
+    font-family:'Lucida Sans'; 
+}
+
+.clothes5
+{
+    position: relative;
+    left: 20px;
+    top: -1260px;
+    font-family:'Lucida Sans';  
+}
+
+.clothes6
+{
+    position: relative;
+    left: 230px;
+    top: -1710px;  
+    font-family:'Lucida Sans';
+     
+}
+.clothes1 .letras1 h3
+{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.clothes2 .letras2 h3
+{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.clothes3 .letras3 h3
+{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.clothes4 .letras4 h3
+{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.clothes5 .letras5 h3
+{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+
+}
+.clothes6 .letras6 h3
+{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.clothes1 .letras1 .precio1 h5
+{
+    position: relative;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+    top: -40px;
+
+}
+
+.clothes2 .letras2 .precio1 h5
+{
+    position: relative;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+    top: -40px;
+
+}
+
+.clothes3 .letras3 .precio1 h5
+{
+    position: relative;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+    top: -30px;
+
+}
+
+.clothes4 .letras4 .precio1 h5
+{
+    position: relative;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+    top: -40px;
+
+}
+.clothes5 .letras5 .precio1 h5
+{
+    position: relative;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+    top: -40px;
+
+}
+
+.clothes6 .letras6 .precio1 h5
+{
+    position: relative;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+    top: -40px;
+
+}
+
+li a{
+    background: rgb(190, 211, 114);
+    position: relative;
+    top: -250px;
+    right: 60px;
+}
+
+
+
+
+
+
+
+
