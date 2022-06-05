@@ -1,0 +1,172 @@
+*
+{
+    margin:  0;
+    padding: 0;
+    box-sizing: border-box;
+    
+
+}
+
+.pasaporte h1
+{
+    color: #24303c;
+    position: relative;
+    left: 400px;
+}
+
+
+.imags
+{
+    position: fixed;
+    
+}
+.registro
+{
+    position: relative;
+    right: 300px;
+    width: 200px;
+    top: -30px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
+.Nombre
+{
+    position: relative;
+    left: 190px;
+    top: -240px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+    
+
+}
+
+.registro h4
+{
+    font-size: 22px;
+    margin-bottom: 20px;
+
+}
+
+.Fecha
+{
+    position: relative;
+    right: 300px;
+    top: -300px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
+.NACIONALIDAD
+{
+    position: relative;
+    left: 190px;
+    top: -510px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
+.PASAPORTE
+{
+    position: relative;
+    right: 300px;
+    top: -564px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
+.EMISION
+{
+    position: relative;
+    left: 190px;
+    top: -770px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
+
+.E_Pasaporte
+{
+    position: relative;
+    right: 300px ;
+    top: -845px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+} 
+
+.v_pasaporte
+{
+    position: relative;
+    right: -190px;
+    top: -1050px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
+.controls
+{
+   width: 100%;
+   background: #24303c;
+   padding: 10px;
+   border-radius: 4px;
+   margin-bottom: 16px; 
+   border: 1px solid #1f53c5;
+   font-family:'Franklin Gothic Medium';
+   font-size: 10px;
+}
+
+.Link
+{
+    position: relative;
+    right: -190px;
+    top: -1050px;
+    width: 200px;
+    background: #24303c ;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium';
+    color: aliceblue;
+}
