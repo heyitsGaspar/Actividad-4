@@ -1,0 +1,244 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' sans-serif;
+}
+
+body
+{
+    background: rgb(150, 236, 184);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contenedor
+{
+    position: relative;
+    width: 1000%;
+    max-width: 650px;
+    min-height: 200px;
+    background: #fff;
+    margin: 50px;
+    display: grid;
+    right: 300px ;
+    height: 420px;
+}
+
+.boogle
+{
+    font-family:'Franklin Gothic Medium';
+    position: relative;
+    right: -265px;
+    top: 140px;
+    font-size: 45px
+    ;
+}
+
+
+
+.Hola .controls
+{
+    position: relative;
+    left: 205px;
+    top: 150px;
+    height: 20px;
+    width: 130px;
+     
+}
+
+.Buton .controls
+{
+    position: relative;
+    left: 345px;
+    top: 130px;
+    height: 20px;
+    width: 130px;
+     
+}
+
+
+.Circulo .controls
+{
+    position: relative;
+    left: 205px;
+    top: 140px;
+    height: 20px;
+    width: 250px;
+     
+}
+
+.texto
+{
+    position: relative;
+    left: 500px;
+    top: -70px;
+    font-family:'Trebuchet MS';
+    color: blue;
+}
+
+.texto1
+{
+    position: relative;
+    left: 570px;
+    top: -88px;
+    font-family:'Trebuchet MS';
+    color: blue;
+}
+
+.texto2
+{
+    position: relative;
+    left: 10px;
+    top: -105px;
+    font-family:'Trebuchet MS';
+    color: blue;
+}
+
+.texto3
+{
+    position: relative;
+    left: 70px;
+    top: -123px;
+    font-family:'Trebuchet MS';
+    color: blue; 
+}
+
+.texto4
+{
+    position: relative;
+    left: 145px;
+    top: -140px;
+    font-family:'Trebuchet MS'; 
+    color: blue;
+}
+
+.texto5
+{
+    position: relative;
+    left: 214px;
+    top: -158px;
+    font-family:'Trebuchet MS';
+    color: blue; 
+}
+
+.texto6
+{
+    position: relative;
+    left: 110px;
+    top: 140px;
+    font-family:'Trebuchet MS'; 
+    color: blue;
+}
+
+.texto7
+{
+    position: relative;
+    left: 290px;
+    top: 123px;
+    font-family:'Trebuchet MS';
+    color: blue; 
+}
+
+.texto8
+{
+    position: relative;
+    left: 460px;
+    top: 105px;
+    font-family:'Trebuchet MS'; 
+    color: blue;
+}
+
+.texto9
+{
+    position: relative;
+    left: 300px;
+    top: 120px;
+    font-family:'Trebuchet MS'; 
+    
+}
+
+.texto10
+{
+    position: relative;
+    left: 460px;
+    top: -105px;
+    font-family:'Trebuchet MS'; 
+    color: blue;
+    
+}
+
+.linea
+{
+    position: relative;
+    width: 2px;  
+    background-color: black; 
+    height: 35px;
+    float: left;
+    left: 60px;
+    top: -73px;
+    
+}
+
+.linea1
+{
+    position: relative;
+    width: 2px;  
+    background-color: black; 
+    height: 35px;
+    float: left;
+    left: 130px;
+    top: -90px;
+    
+}
+
+.linea2
+{
+    position: relative;
+    width: 2px;  
+    background-color: black; 
+    height: 35px;
+    float: left;
+    left: 195px;
+    top: -90px;
+    
+}
+
+.linea3
+{
+    position: relative;
+    width: 2px;  
+    background-color: black; 
+    height: 35px;
+    float: left;
+    left: 560px;
+    top: -90px;
+    
+}
+
+.linea4
+{
+    position: relative;
+    width: 2px;  
+    background-color: black; 
+    height: 35px;
+    float: left;
+    left: 435px;
+    top: 230px;
+    
+}
+
+.linea5
+{
+    position: relative;
+    width: 2px;  
+    background-color: black; 
+    height: 35px;
+    float: left;
+    left: 265px;
+    top: 230px;
+    
+}
