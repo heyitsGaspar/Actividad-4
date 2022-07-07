@@ -1,0 +1,1538 @@
+!function e(t, n, o) {
+    function i(r, s) {
+        if (!n[r]) {
+            if (!t[r]) {
+                var a = "function" == typeof require && require;
+                if (!s && a)
+                    return a(r, !0);
+                if (l)
+                    return l(r, !0);
+                var u = new Error("Cannot find module '" + r + "'");
+                throw u.code = "MODULE_NOT_FOUND",
+                u
+            }
+            var d = n[r] = {
+                exports: {}
+            };
+            t[r][0].call(d.exports, function (e) {
+                var n = t[r][1][e];
+                return i(n ? n : e)
+            }, d, d.exports, e, t, n, o)
+        }
+        return n[r].exports
+    }
+    for (var l = "function" == typeof require && require, r = 0; r < o.length; r++)
+        i(o[r]);
+    return i
+}({
+    1: [function (e, t, n) {
+        !function (e) {
+            "function" == typeof define && define.amd && define.amd.jQuery ? define(["jquery"], e) : e(jQuery)
+        }(function (e) {
+            function t(t) {
+                return !t || void 0 !== t.allowPageScroll || void 0 === t.swipe && void 0 === t.swipeStatus || (t.allowPageScroll = u),
+                void 0 !== t.click && void 0 === t.tap && (t.tap = t.click),
+                t || (t = {}),
+                t = e.extend({}, e.fn.swipe.defaults, t),
+                this.each(function () {
+                    var o = e(this)
+                      , i = o.data(S);
+                    i || (i = new n(this, t),
+                    o.data(S, i))
+                })
+            }
+            function n(t, n) {
+                function k(t) {
+                    if (!(ue() || e(t.target).closest(n.excludedElements, Ue).length > 0)) {
+                        var o, i = t.originalEvent ? t.originalEvent : t, l = x ? i.touches[0] : i;
+                        return Ve = $,
+                        x ? Qe = i.touches.length : t.preventDefault(),
+                        We = 0,
+                        He = null,
+                        Ne = null,
+                        Ae = 0,
+                        qe = 0,
+                        je = 0,
+                        Re = 1,
+                        ze = 0,
+                        Fe = pe(),
+                        Be = we(),
+                        se(),
+                        !x || Qe === n.fingers || n.fingers === v || B() ? (ce(0, l),
+                        Ye = De(),
+                        2 == Qe && (ce(1, i.touches[1]),
+                        qe = je = $e(Fe[0].start, Fe[1].start)),
+                        (n.swipeStatus || n.pinchStatus) && (o = W(i, Ve))) : o = !1,
+                        o === !1 ? (Ve = C,
+                        W(i, Ve),
+                        o) : (n.hold && (et = setTimeout(e.proxy(function () {
+                            Ue.trigger("hold", [i.target]),
+                            n.hold && (o = n.hold.call(Ue, i, i.target))
+                        }, this), n.longTapThreshold)),
+                        de(!0),
+                        null)
+                    }
+                }
+                function O(e) {
+                    var t = e.originalEvent ? e.originalEvent : e;
+                    if (Ve !== y && Ve !== C && !ae()) {
+                        var o, i = x ? t.touches[0] : t, l = fe(i);
+                        if (Ge = De(),
+                        x && (Qe = t.touches.length),
+                        n.hold && clearTimeout(et),
+                        Ve = T,
+                        2 == Qe && (0 == qe ? (ce(1, t.touches[1]),
+                        qe = je = $e(Fe[0].start, Fe[1].start)) : (fe(t.touches[1]),
+                        je = $e(Fe[0].end, Fe[1].end),
+                        Ne = ye(Fe[0].end, Fe[1].end)),
+                        Re = Te(qe, je),
+                        ze = Math.abs(qe - je)),
+                        Qe === n.fingers || n.fingers === v || !x || B()) {
+                            if (He = Ee(l.start, l.end),
+                            z(e, He),
+                            We = Ce(l.start, l.end),
+                            Ae = be(),
+                            me(He, We),
+                            (n.swipeStatus || n.pinchStatus) && (o = W(t, Ve)),
+                            !n.triggerOnTouchEnd || n.triggerOnTouchLeave) {
+                                var r = !0;
+                                if (n.triggerOnTouchLeave) {
+                                    var s = Se(this);
+                                    r = ke(l.end, s)
+                                }
+                                !n.triggerOnTouchEnd && r ? Ve = L(T) : n.triggerOnTouchLeave && !r && (Ve = L(y)),
+                                Ve != C && Ve != y || W(t, Ve)
+                            }
+                        } else
+                            Ve = C,
+                            W(t, Ve);
+                        o === !1 && (Ve = C,
+                        W(t, Ve))
+                    }
+                }
+                function _(e) {
+                    var t = e.originalEvent;
+                    return x && t.touches.length > 0 ? (re(),
+                    !0) : (ae() && (Qe = Ze),
+                    Ge = De(),
+                    Ae = be(),
+                    q() || !A() ? (Ve = C,
+                    W(t, Ve)) : n.triggerOnTouchEnd || 0 == n.triggerOnTouchEnd && Ve === T ? (e.preventDefault(),
+                    Ve = y,
+                    W(t, Ve)) : !n.triggerOnTouchEnd && X() ? (Ve = y,
+                    H(t, Ve, h)) : Ve === T && (Ve = C,
+                    W(t, Ve)),
+                    de(!1),
+                    null)
+                }
+                function I() {
+                    Qe = 0,
+                    Ge = 0,
+                    Ye = 0,
+                    qe = 0,
+                    je = 0,
+                    Re = 1,
+                    se(),
+                    de(!1)
+                }
+                function M(e) {
+                    var t = e.originalEvent;
+                    n.triggerOnTouchLeave && (Ve = L(y),
+                    W(t, Ve))
+                }
+                function P() {
+                    Ue.unbind(_e, k),
+                    Ue.unbind(Le, I),
+                    Ue.unbind(Ie, O),
+                    Ue.unbind(Me, _),
+                    Pe && Ue.unbind(Pe, M),
+                    de(!1)
+                }
+                function L(e) {
+                    var t = e
+                      , o = R()
+                      , i = A()
+                      , l = q();
+                    return !o || l ? t = C : !i || e != T || n.triggerOnTouchEnd && !n.triggerOnTouchLeave ? !i && e == y && n.triggerOnTouchLeave && (t = C) : t = y,
+                    t
+                }
+                function W(e, t) {
+                    var n = void 0;
+                    return F() || Q() || U() || B() ? ((F() || Q()) && (n = H(e, t, c)),
+                    (U() || B()) && n !== !1 && (n = H(e, t, f))) : ie() && n !== !1 ? n = H(e, t, p) : le() && n !== !1 ? n = H(e, t, m) : oe() && n !== !1 && (n = H(e, t, h)),
+                    t === C && I(e),
+                    t === y && (x ? 0 == e.touches.length && I(e) : I(e)),
+                    n
+                }
+                function H(t, u, d) {
+                    var g = void 0;
+                    if (d == c) {
+                        if (Ue.trigger("swipeStatus", [u, He || null, We || 0, Ae || 0, Qe, Fe]),
+                        n.swipeStatus && (g = n.swipeStatus.call(Ue, t, u, He || null, We || 0, Ae || 0, Qe, Fe),
+                        g === !1))
+                            return !1;
+                        if (u == y && V()) {
+                            if (Ue.trigger("swipe", [He, We, Ae, Qe, Fe]),
+                            n.swipe && (g = n.swipe.call(Ue, t, He, We, Ae, Qe, Fe),
+                            g === !1))
+                                return !1;
+                            switch (He) {
+                                case o:
+                                    Ue.trigger("swipeLeft", [He, We, Ae, Qe, Fe]),
+                                    n.swipeLeft && (g = n.swipeLeft.call(Ue, t, He, We, Ae, Qe, Fe));
+                                    break;
+                                case i:
+                                    Ue.trigger("swipeRight", [He, We, Ae, Qe, Fe]),
+                                    n.swipeRight && (g = n.swipeRight.call(Ue, t, He, We, Ae, Qe, Fe));
+                                    break;
+                                case l:
+                                    Ue.trigger("swipeUp", [He, We, Ae, Qe, Fe]),
+                                    n.swipeUp && (g = n.swipeUp.call(Ue, t, He, We, Ae, Qe, Fe));
+                                    break;
+                                case r:
+                                    Ue.trigger("swipeDown", [He, We, Ae, Qe, Fe]),
+                                    n.swipeDown && (g = n.swipeDown.call(Ue, t, He, We, Ae, Qe, Fe))
+                            }
+                        }
+                    }
+                    if (d == f) {
+                        if (Ue.trigger("pinchStatus", [u, Ne || null, ze || 0, Ae || 0, Qe, Re, Fe]),
+                        n.pinchStatus && (g = n.pinchStatus.call(Ue, t, u, Ne || null, ze || 0, Ae || 0, Qe, Re, Fe),
+                        g === !1))
+                            return !1;
+                        if (u == y && N())
+                            switch (Ne) {
+                                case s:
+                                    Ue.trigger("pinchIn", [Ne || null, ze || 0, Ae || 0, Qe, Re, Fe]),
+                                    n.pinchIn && (g = n.pinchIn.call(Ue, t, Ne || null, ze || 0, Ae || 0, Qe, Re, Fe));
+                                    break;
+                                case a:
+                                    Ue.trigger("pinchOut", [Ne || null, ze || 0, Ae || 0, Qe, Re, Fe]),
+                                    n.pinchOut && (g = n.pinchOut.call(Ue, t, Ne || null, ze || 0, Ae || 0, Qe, Re, Fe))
+                            }
+                    }
+                    return d == h ? u !== C && u !== y || (clearTimeout(Ke),
+                    clearTimeout(et),
+                    Z() && !ee() ? (Je = De(),
+                    Ke = setTimeout(e.proxy(function () {
+                        Je = null,
+                        Ue.trigger("tap", [t.target]),
+                        n.tap && (g = n.tap.call(Ue, t, t.target))
+                    }, this), n.doubleTapThreshold)) : (Je = null,
+                    Ue.trigger("tap", [t.target]),
+                    n.tap && (g = n.tap.call(Ue, t, t.target)))) : d == p ? u !== C && u !== y || (clearTimeout(Ke),
+                    Je = null,
+                    Ue.trigger("doubletap", [t.target]),
+                    n.doubleTap && (g = n.doubleTap.call(Ue, t, t.target))) : d == m && (u !== C && u !== y || (clearTimeout(Ke),
+                    Je = null,
+                    Ue.trigger("longtap", [t.target]),
+                    n.longTap && (g = n.longTap.call(Ue, t, t.target)))),
+                    g
+                }
+                function A() {
+                    var e = !0;
+                    return null !== n.threshold && (e = We >= n.threshold),
+                    e
+                }
+                function q() {
+                    var e = !1;
+                    return null !== n.cancelThreshold && null !== He && (e = ge(He) - We >= n.cancelThreshold),
+                    e
+                }
+                function j() {
+                    return null !== n.pinchThreshold ? ze >= n.pinchThreshold : !0
+                }
+                function R() {
+                    var e;
+                    return e = n.maxTimeThreshold ? !(Ae >= n.maxTimeThreshold) : !0
+                }
+                function z(e, t) {
+                    if (n.preventDefaultEvents !== !1)
+                        if (n.allowPageScroll === u)
+                            e.preventDefault();
+                        else {
+                            var s = n.allowPageScroll === d;
+                            switch (t) {
+                                case o:
+                                    (n.swipeLeft && s || !s && n.allowPageScroll != g) && e.preventDefault();
+                                    break;
+                                case i:
+                                    (n.swipeRight && s || !s && n.allowPageScroll != g) && e.preventDefault();
+                                    break;
+                                case l:
+                                    (n.swipeUp && s || !s && n.allowPageScroll != w) && e.preventDefault();
+                                    break;
+                                case r:
+                                    (n.swipeDown && s || !s && n.allowPageScroll != w) && e.preventDefault()
+                            }
+                        }
+                }
+                function N() {
+                    var e = Y()
+                      , t = G()
+                      , n = j();
+                    return e && t && n
+                }
+                function B() {
+                    return !!(n.pinchStatus || n.pinchIn || n.pinchOut)
+                }
+                function U() {
+                    return !(!N() || !B())
+                }
+                function V() {
+                    var e = R()
+                      , t = A()
+                      , n = Y()
+                      , o = G()
+                      , i = q()
+                      , l = !i && o && n && t && e;
+                    return l
+                }
+                function Q() {
+                    return !!(n.swipe || n.swipeStatus || n.swipeLeft || n.swipeRight || n.swipeUp || n.swipeDown)
+                }
+                function F() {
+                    return !(!V() || !Q())
+                }
+                function Y() {
+                    return Qe === n.fingers || n.fingers === v || !x
+                }
+                function G() {
+                    return 0 !== Fe[0].end.x
+                }
+                function X() {
+                    return !!n.tap
+                }
+                function Z() {
+                    return !!n.doubleTap
+                }
+                function J() {
+                    return !!n.longTap
+                }
+                function K() {
+                    if (null == Je)
+                        return !1;
+                    var e = De();
+                    return Z() && e - Je <= n.doubleTapThreshold
+                }
+                function ee() {
+                    return K()
+                }
+                function te() {
+                    return (1 === Qe || !x) && (isNaN(We) || We < n.threshold)
+                }
+                function ne() {
+                    return Ae > n.longTapThreshold && b > We
+                }
+                function oe() {
+                    return !(!te() || !X())
+                }
+                function ie() {
+                    return !(!K() || !Z())
+                }
+                function le() {
+                    return !(!ne() || !J())
+                }
+                function re() {
+                    Xe = De(),
+                    Ze = event.touches.length + 1
+                }
+                function se() {
+                    Xe = 0,
+                    Ze = 0
+                }
+                function ae() {
+                    var e = !1;
+                    if (Xe) {
+                        var t = De() - Xe;
+                        t <= n.fingerReleaseThreshold && (e = !0)
+                    }
+                    return e
+                }
+                function ue() {
+                    return !(Ue.data(S + "_intouch") !== !0)
+                }
+                function de(e) {
+                    e === !0 ? (Ue.bind(Ie, O),
+                    Ue.bind(Me, _),
+                    Pe && Ue.bind(Pe, M)) : (Ue.unbind(Ie, O, !1),
+                    Ue.unbind(Me, _, !1),
+                    Pe && Ue.unbind(Pe, M, !1)),
+                    Ue.data(S + "_intouch", e === !0)
+                }
+                function ce(e, t) {
+                    var n = void 0 !== t.identifier ? t.identifier : 0;
+                    return Fe[e].identifier = n,
+                    Fe[e].start.x = Fe[e].end.x = t.pageX || t.clientX,
+                    Fe[e].start.y = Fe[e].end.y = t.pageY || t.clientY,
+                    Fe[e]
+                }
+                function fe(e) {
+                    var t = void 0 !== e.identifier ? e.identifier : 0
+                      , n = he(t);
+                    return n.end.x = e.pageX || e.clientX,
+                    n.end.y = e.pageY || e.clientY,
+                    n
+                }
+                function he(e) {
+                    for (var t = 0; t < Fe.length; t++)
+                        if (Fe[t].identifier == e)
+                            return Fe[t]
+                }
+                function pe() {
+                    for (var e = [], t = 0; 5 >= t; t++)
+                        e.push({
+                            start: {
+                                x: 0,
+                                y: 0
+                            },
+                            end: {
+                                x: 0,
+                                y: 0
+                            },
+                            identifier: 0
+                        });
+                    return e
+                }
+                function me(e, t) {
+                    t = Math.max(t, ge(e)),
+                    Be[e].distance = t
+                }
+                function ge(e) {
+                    return Be[e] ? Be[e].distance : void 0
+                }
+                function we() {
+                    var e = {};
+                    return e[o] = ve(o),
+                    e[i] = ve(i),
+                    e[l] = ve(l),
+                    e[r] = ve(r),
+                    e
+                }
+                function ve(e) {
+                    return {
+                        direction: e,
+                        distance: 0
+                    }
+                }
+                function be() {
+                    return Ge - Ye
+                }
+                function $e(e, t) {
+                    var n = Math.abs(e.x - t.x)
+                      , o = Math.abs(e.y - t.y);
+                    return Math.round(Math.sqrt(n * n + o * o))
+                }
+                function Te(e, t) {
+                    var n = t / e * 1;
+                    return n.toFixed(2)
+                }
+                function ye() {
+                    return 1 > Re ? a : s
+                }
+                function Ce(e, t) {
+                    return Math.round(Math.sqrt(Math.pow(t.x - e.x, 2) + Math.pow(t.y - e.y, 2)))
+                }
+                function xe(e, t) {
+                    var n = e.x - t.x
+                      , o = t.y - e.y
+                      , i = Math.atan2(o, n)
+                      , l = Math.round(180 * i / Math.PI);
+                    return 0 > l && (l = 360 - Math.abs(l)),
+                    l
+                }
+                function Ee(e, t) {
+                    var n = xe(e, t);
+                    return 45 >= n && n >= 0 ? o : 360 >= n && n >= 315 ? o : n >= 135 && 225 >= n ? i : n > 45 && 135 > n ? r : l
+                }
+                function De() {
+                    var e = new Date;
+                    return e.getTime()
+                }
+                function Se(t) {
+                    t = e(t);
+                    var n = t.offset()
+                      , o = {
+                          left: n.left,
+                          right: n.left + t.outerWidth(),
+                          top: n.top,
+                          bottom: n.top + t.outerHeight()
+                      };
+                    return o
+                }
+                function ke(e, t) {
+                    return e.x > t.left && e.x < t.right && e.y > t.top && e.y < t.bottom
+                }
+                var Oe = x || D || !n.fallbackToMouseEvents
+                  , _e = Oe ? D ? E ? "MSPointerDown" : "pointerdown" : "touchstart" : "mousedown"
+                  , Ie = Oe ? D ? E ? "MSPointerMove" : "pointermove" : "touchmove" : "mousemove"
+                  , Me = Oe ? D ? E ? "MSPointerUp" : "pointerup" : "touchend" : "mouseup"
+                  , Pe = Oe ? null : "mouseleave"
+                  , Le = D ? E ? "MSPointerCancel" : "pointercancel" : "touchcancel"
+                  , We = 0
+                  , He = null
+                  , Ae = 0
+                  , qe = 0
+                  , je = 0
+                  , Re = 1
+                  , ze = 0
+                  , Ne = 0
+                  , Be = null
+                  , Ue = e(t)
+                  , Ve = "start"
+                  , Qe = 0
+                  , Fe = null
+                  , Ye = 0
+                  , Ge = 0
+                  , Xe = 0
+                  , Ze = 0
+                  , Je = 0
+                  , Ke = null
+                  , et = null;
+                try {
+                    Ue.bind(_e, k),
+                    Ue.bind(Le, I)
+                } catch (tt) {
+                    e.error("events not supported " + _e + "," + Le + " on jQuery.swipe")
+                }
+                this.enable = function () {
+                    return Ue.bind(_e, k),
+                    Ue.bind(Le, I),
+                    Ue
+                }
+                ,
+                this.disable = function () {
+                    return P(),
+                    Ue
+                }
+                ,
+                this.destroy = function () {
+                    P(),
+                    Ue.data(S, null),
+                    Ue = null
+                }
+                ,
+                this.option = function (t, o) {
+                    if (void 0 !== n[t]) {
+                        if (void 0 === o)
+                            return n[t];
+                        n[t] = o
+                    } else
+                        e.error("Option " + t + " does not exist on jQuery.swipe.options");
+                    return null
+                }
+            }
+            var o = "left"
+              , i = "right"
+              , l = "up"
+              , r = "down"
+              , s = "in"
+              , a = "out"
+              , u = "none"
+              , d = "auto"
+              , c = "swipe"
+              , f = "pinch"
+              , h = "tap"
+              , p = "doubletap"
+              , m = "longtap"
+              , g = "horizontal"
+              , w = "vertical"
+              , v = "all"
+              , b = 10
+              , $ = "start"
+              , T = "move"
+              , y = "end"
+              , C = "cancel"
+              , x = "ontouchstart" in window
+              , E = window.navigator.msPointerEnabled && !window.navigator.pointerEnabled
+              , D = window.navigator.pointerEnabled || window.navigator.msPointerEnabled
+              , S = "TouchSwipe"
+              , k = {
+                  fingers: 1,
+                  threshold: 75,
+                  cancelThreshold: null,
+                  pinchThreshold: 20,
+                  maxTimeThreshold: null,
+                  fingerReleaseThreshold: 250,
+                  longTapThreshold: 500,
+                  doubleTapThreshold: 200,
+                  swipe: null,
+                  swipeLeft: null,
+                  swipeRight: null,
+                  swipeUp: null,
+                  swipeDown: null,
+                  swipeStatus: null,
+                  pinchIn: null,
+                  pinchOut: null,
+                  pinchStatus: null,
+                  click: null,
+                  tap: null,
+                  doubleTap: null,
+                  longTap: null,
+                  hold: null,
+                  triggerOnTouchEnd: !0,
+                  triggerOnTouchLeave: !1,
+                  allowPageScroll: "auto",
+                  fallbackToMouseEvents: !0,
+                  excludedElements: "label, button, input, select, textarea, a, .noSwipe",
+                  preventDefaultEvents: !0
+              };
+            e.fn.swipe = function (n) {
+                var o = e(this)
+                  , i = o.data(S);
+                if (i && "string" == typeof n) {
+                    if (i[n])
+                        return i[n].apply(this, Array.prototype.slice.call(arguments, 1));
+                    e.error("Method " + n + " does not exist on jQuery.swipe")
+                } else if (!(i || "object" != typeof n && n))
+                    return t.apply(this, arguments);
+                return o
+            }
+            ,
+            e.fn.swipe.defaults = k,
+            e.fn.swipe.phases = {
+                PHASE_START: $,
+                PHASE_MOVE: T,
+                PHASE_END: y,
+                PHASE_CANCEL: C
+            },
+            e.fn.swipe.directions = {
+                LEFT: o,
+                RIGHT: i,
+                UP: l,
+                DOWN: r,
+                IN: s,
+                OUT: a
+            },
+            e.fn.swipe.pageScroll = {
+                NONE: u,
+                HORIZONTAL: g,
+                VERTICAL: w,
+                AUTO: d
+            },
+            e.fn.swipe.fingers = {
+                ONE: 1,
+                TWO: 2,
+                THREE: 3,
+                ALL: v
+            }
+        })
+    }
+    , {}],
+    2: [function (e, t, n) {
+        function o() {
+            c.paintGrid(),
+            h.detect(),
+            p.detect()
+        }
+        function i() {
+            f.init(),
+            g.init(),
+            w.init(),
+            v.init(),
+            b.init(),
+            T.init(),
+            C.init(),
+            x.init(),
+            E.init(),
+            D.init(),
+            S.init(),
+            m.ajax("[data-open=ajaxMode]"),
+            logoAnim.init(),
+            y.loadMore(),
+            y.checkDimension($(".last-news"))
+        }
+        function l() {
+            f.init(),
+            g.checkDimension($("header#header")),
+            D.check(),
+            S.checkDimension(),
+            y.checkDimension($(".last-news"))
+        }
+        function r() {
+            g.checkScroll($("header#header")),
+            S.checkScroll($(".module_visual-category-fixedNav")),
+            S.checkScroll($(".swiper-button-carousel"))
+        }
+        var s = e("./partials/onResize")
+          , a = e("./partials/onReady")
+          , u = e("./partials/onLoad")
+          , d = e("./partials/onScroll")
+          , c = (e("./lib/touchSwipe"),
+        e("./modules/grid"))
+          , f = e("./modules/structure")
+          , h = e("./modules/detectBrowser")
+          , p = (e("./modules/detectBreakpoint"),
+        e("./modules/detectTouchDevice"))
+          , m = e("./modules/lightbox")
+          , g = (e("./modules/splitDOM"),
+        e("./modules/header"))
+          , w = e("./modules/module-social-twitter")
+          , v = e("./modules/newsletter")
+          , b = e("./modules/module-news-gallery")
+          , T = e("./modules/module-lightbox-search")
+          , y = e("./modules/demo")
+          , C = e("./modules/module-most-reader")
+          , x = e("./modules/module-last-videos")
+          , E = e("./modules/module-image-slider")
+          , D = e("./modules/module-distributor-slider")
+          , S = e("./modules/module-visual-slider");
+        a(o),
+        u(i),
+        s(l),
+        d(r)
+    }
+    , {
+        "./lib/touchSwipe": 1,
+        "./modules/demo": 3,
+        "./modules/detectBreakpoint": 4,
+        "./modules/detectBrowser": 5,
+        "./modules/detectTouchDevice": 6,
+        "./modules/grid": 7,
+        "./modules/header": 8,
+        "./modules/lightbox": 9,
+        "./modules/module-distributor-slider": 10,
+        "./modules/module-image-slider": 11,
+        "./modules/module-last-videos": 12,
+        "./modules/module-lightbox-search": 13,
+        "./modules/module-most-reader": 14,
+        "./modules/module-news-gallery": 15,
+        "./modules/module-social-twitter": 16,
+        "./modules/module-visual-slider": 17,
+        "./modules/newsletter": 18,
+        "./modules/splitDOM": 19,
+        "./modules/structure": 20,
+        "./partials/onLoad": 21,
+        "./partials/onReady": 22,
+        "./partials/onResize": 23,
+        "./partials/onScroll": 24
+    }],
+    3: [function (e, t, n) {
+        var o, i, l, r, s, a, u, d, c, f, h, p = new function () {
+            return {
+                loadMore: function () {
+                    h = $(".last-news"),
+                    o = $(".last-news").find(">li").last().clone(),
+                    i = $(".last-news").find(">li").eq(0).clone(),
+                    l = $(".last-news").find(">li").eq(-1).clone(),
+                    r = $(".last-news").find(">li").eq(1).clone(),
+                    s = $(".last-news").find(">li").eq(0).clone(),
+                    a = $(".last-news").find(">li").last().clone(),
+                    u = $(".last-news").find(">li").eq(-1).clone(),
+                    d = $(".last-news").find(">li").eq(2).clone(),
+                    c = $(".highlight-news").find(">li").eq(1).clone(),
+                    f = $(".highlight-news").find(">li").eq(-1).clone(),
+                    h.length && h.closest(".module").find("a.button").off().on("click", function () {
+                        $(this).addClass("loader"),
+                        setTimeout(function () {
+                            p.stop(h)
+                        }, 1900)
+                    })
+                },
+                stop: function (e) {
+                    e.closest(".module").find("a.button").removeClass("loader")
+                },
+                checkDimension: function (e) {
+                    if (e.length) {
+                        var t = window.innerWidth;
+                        window.innerHeight;
+                        p.elementsViewed(t)
+                    }
+                },
+                elementsViewed: function (e) {
+                    if (e > 675 && 921 > e) {
+                        var t = $(".last-news").find("> li").size();
+                        t > 4 && ($(".last-news").find("> li").last().remove(),
+                        $(".last-news").find("> li").eq(-1).remove())
+                    } else if (e > 921 && 2560 > e) {
+                        var t = $(".last-news").find("> li").size();
+                        6 > t ? $(".last-news").find("> li").last().after(o, i) : t > 6 && ($(".last-news").find("> li").last().remove(),
+                        $(".last-news").find("> li").eq(-1).remove())
+                    } else if (e >= 2560) {
+                        var t = $(".last-news").find("> li").size();
+                        8 > t && $(".last-news").find("> li").last().after(l, r)
+                    }
+                    if (e >= 1919) {
+                        var t = $(".highlight-news").find("> li").size();
+                        6 > t && $(".highlight-news").find("> li").last().after(c, f)
+                    } else {
+                        var t = $(".highlight-news").find("> li").size();
+                        t >= 6 && ($(".highlight-news").find("> li").last().remove(),
+                        $(".highlight-news").find("> li").eq(-1).remove())
+                    }
+                }
+            }
+        }
+        ;
+        t.exports = p
+    }
+    , {}],
+    4: [function (e, t, n) {
+        var o = new function () {
+            var e = 580
+              , t = 768
+              , n = !1
+              , o = !1
+              , i = !1;
+            return {
+                detect: function () {
+                    var l = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                    e >= l ? ($("body").hasClass("tabletDevice") && $("body").removeClass("tabletDevice"),
+                    $("body").addClass("phoneDevice"),
+                    n = !0,
+                    o = !1,
+                    i = !1) : t >= l ? (($("body").hasClass("desktopDevice") || $("body").hasClass("phoneDevice")) && $("body").removeClass("desktopDevice phoneDevice"),
+                    $("body").addClass("tabletDevice"),
+                    n = !1,
+                    o = !0,
+                    i = !1) : ($("body").hasClass("tabletDevice") && $("body").removeClass("tabletDevice"),
+                    $("body").addClass("desktopDevice"),
+                    n = !1,
+                    o = !1,
+                    i = !0)
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    5: [function (e, t, n) {
+        var o = new function () {
+            return {
+                detect: function () {
+                    navigator.userAgent.toLowerCase().indexOf("firefox") > -1 && $("body").addClass("ff");
+                    var e = navigator.userAgent.toLowerCase().match(/android\s([1-4\.]*)/);
+                    e && $("body").addClass("android");
+                    var t = navigator.userAgent.match(/Windows Phone/i) || navigator.userAgent.match(/iemobile/i);
+                    t && $("body").addClass("iePhone");
+                    var n = /MSIE (\d+\.\d+);/.test(navigator.userAgent)
+                      , o = new Number(RegExp.$1);
+                    n && 8 == o && $("html").attr("class", "ie8"),
+                    n && 9 == o && $("body").addClass("ie9"),
+                    n && 10 == o && $("body").addClass("ie10"),
+                    navigator.appVersion.indexOf("Trident/") > 0 && $("body").addClass("ie11");
+                    var i = !!navigator.userAgent.match(/(iPad|iPhone|iPod)/g);
+                    i && $("body").addClass("iOS");
+                    var l = !!navigator.userAgent.match("CriOS");
+                    l && $("body").addClass("criOS")
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    6: [function (e, t, n) {
+        var o = new function () {
+            return {
+                detect: function () {
+                    function e() {
+                        document.querySelector("body").addEventListener("mousemove.hoverTest", function () {
+                            $("body").hasClass("noTouchDevice") || ($("body").addClass("noTouchDevice").removeClass("touchDevice"),
+                            window.is_touch_device = !1)
+                        })
+                    }
+                    function t() {
+                        $("body").on("touchstart", function () {
+                            clearInterval(activeMouse),
+                            $("body").off("mousemove.hoverTest"),
+                            $("body").hasClass("touchDevice") || ($("body").addClass("touchDevice").removeClass("noTouchDevice"),
+                            window.is_touch_device = !0)
+                        })
+                    }
+                    function n() {
+                        $("body").on("touchend", function (t) {
+                            clearInterval(activeMouse),
+                            activeMouse = setInterval(e, 500)
+                        })
+                    }
+                    window.is_touch_device = "ontouchstart" in document.documentElement,
+                    window.is_touch_device ? $("body").addClass("touchDevice") : $("body").addClass("noTouchDevice"),
+                    e(),
+                    t(),
+                    n()
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    7: [function (e, t, n) {
+        var o = new function () {
+            return {
+                paintGrid: function () {
+                    var e = $('\n									<div class="grid">\n										<div class="grid_wrapper">\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n											<span class="col1-big col1 col1-md col1-sm"></span>\n										</div>\n									</div>\n									');
+                    $("body").hasClass("showGrid") && $("#general").prepend(e)
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    8: [function (e, t, n) {
+        var o, i = new function () {
+            return {
+                init: function () {
+                    o = $("header#header"),
+                    i.handleMenu(),
+                    i.openSearchLighbox($(".icon-search"))
+                },
+                handleMenu: function () {
+                    o.length && $("#menu-handle, .module_header-black-cover").off().on("click", function () {
+                        $("body").toggleClass("lateral-menu-mode")
+                    })
+                },
+                checkScroll: function (e) {
+                    if (e.length) {
+                        var t = $(window)
+                          , n = window.innerWidth
+                          , o = t.scrollTop();
+                        e.outerHeight();
+                        n > "920" && (0 >= o ? e.removeClass("fixed-mode") : e.addClass("fixed-mode"))
+                    }
+                },
+                checkDimension: function (e) {
+                    if (e.length) {
+                        var t = window.innerWidth;
+                        window.innerHeight;
+                        "920" >= t ? e.removeClass("fixed-mode") : $("body").removeClass("lateral-menu-mode")
+                    }
+                },
+                openSearchLighbox: function (e) {
+                    e.length && e.off().on("click", function () {
+                        $("body").addClass("search-lightbox"),
+                        $(".module_header-serach-input-wrap input").focus(),
+                        $(".module_header-serach-input-wrap input").select(),
+                        $(".search-lightbox .icon-close").off().on("click", function () {
+                            $("body").removeClass("search-lightbox"),
+                            $('.module_header-serach-input-wrap input[type="text"]').val("")
+                            //$(".module_header-search-label .icon-search").addClass("disabled"),
+                            //$("#submitSearch").prop("disabled", !0)
+                        })
+                    })
+                }
+            }
+        }
+;
+        t.exports = i
+    }
+    , {}],
+    9: [function (e, t, n) {
+        var o = new function () {
+            return {
+                ajax: function (e) {
+                    $(e).magnificPopup({
+                        type: "ajax",
+                        alignTop: !0,
+                        overflowY: "scroll",
+                        callbacks: {
+                            beforeOpen: function () {
+                                $("html").addClass("lock")
+                            },
+                            afterClose: function () {
+                                $("html").removeClass("lock")
+                            }
+                        }
+                    })
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    10: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    o.check()
+                },
+                check: function (e) {
+                    var t = $(window).outerWidth();
+                    t > 676 ? o.deleteCarousel() : o.createCarousel()
+                },
+                createCarousel: function () {
+                    var e = $("[data-carousel='distributorCarousel']");
+                    e.length && (e.hasClass("owl-carousel") || e.owlCarousel({
+                        margin: 0,
+                        nav: !1,
+                        dots: !0,
+                        touchDrag: !0,
+                        mouseDrag: !0,
+                        margin: 0,
+                        loop: !0,
+                        items: 1
+                    }))
+                },
+                deleteCarousel: function () {
+                    var e = $("[data-carousel='distributorCarousel']");
+                    e.length && e.hasClass("owl-carousel") && e.trigger("destroy.owl.carousel").removeClass("owl-carousel owl-loaded").find(".owl-stage-outer").children().unwrap().find(".owl-height").removeAttr("style")
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    11: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    imageObj = $(".module_image-slider"),
+                    imageObj.length && o.createSlider(imageObj)
+                },
+                createSlider: function (e) {
+                    e.owlCarousel({
+                        margin: 0,
+                        nav: !1,
+                        dots: !0,
+                        touchDrag: !0,
+                        mouseDrag: !0,
+                        margin: 0,
+                        loop: !0,
+                        items: 1
+                    })
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    12: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    lastVideosBg = $(".module-last-video-hl-carousel-items"),
+                    lastVideosBg.length && o.createSlider(lastVideosBg)
+                },
+                createSlider: function (e) {
+                    var t = $(".module-last-video-bg-carousel-items");
+                    e.owlCarousel({
+                        margin: 0,
+                        nav: !1,
+                        dots: !1,
+                        touchDrag: !0,
+                        mouseDrag: !0,
+                        margin: 10,
+                        loop: !1,
+                        items: 1,
+                        responsive: {
+                            0: {
+                                center: !0
+                            },
+                            675: {
+                                center: !1
+                            }
+                        }
+                    }),
+                    t.owlCarousel({
+                        margin: 0,
+                        nav: !1,
+                        dots: !1,
+                        touchDrag: !0,
+                        mouseDrag: !0,
+                        margin: 0,
+                        loop: !1,
+                        items: 1,
+                        responsive: {
+                            0: {
+                                center: !0
+                            },
+                            675: {
+                                center: !1
+                            }
+                        }
+                    }),
+                    $(".module-last-videos .swiper-button-next").click(function () {
+                        e.trigger("next.owl.carousel"),
+                        t.trigger("next.owl.carousel", [500])
+                    }),
+                    $(".module-last-videos .swiper-button-prev").click(function () {
+                        e.trigger("prev.owl.carousel", [300]),
+                        t.trigger("prev.owl.carousel", [500])
+                    }),
+                    $(".module-last-videos-scrollable-item").off().on("click", function () {
+                        var n = $(this).index();
+                        e.trigger("to.owl.carousel", [n, 300, !0]),
+                        t.trigger("to.owl.carousel", [n, 500, !0])
+                    }),
+                    e.on("translated.owl.carousel", function (e) {
+                        t.trigger("to.owl.carousel", [e.item.index, 500, !0]),
+                        o.selectedItem(e.item.index),
+                        o.disabledButton(e.item.index, e.item.count)
+                    })
+                },
+                selectedItem: function (e) {
+                    $(".module-last-videos-scrollable-item").removeClass("selected").eq(e).addClass("selected")
+                },
+                disabledButton: function (e, t) {
+                    0 === e ? ($(".module-last-videos .swiper-button-prev").addClass("disabled"),
+                    $(".module-last-videos .swiper-button-next").removeClass("disabled")) : e === t - 1 ? ($(".module-last-videos .swiper-button-next").addClass("disabled"),
+                    $(".module-last-videos .swiper-button-prev").removeClass("disabled")) : ($(".module-last-videos .swiper-button-prev").removeClass("disabled"),
+                    $(".module-last-videos .swiper-button-next").removeClass("disabled"))
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    13: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    searchInput = $(".module_header-search-input"),
+                    searchInput.length && o.handleInput(searchInput)
+                },
+                handleInput: function (e) {
+                    e.off().on("blur", function () {
+                        $this = $(this),
+                        $thisLenght = $this.val().length
+                        //0 === $thisLenght && ($(".module_header-search-label .icon-search").addClass("disabled"),
+                        //$("#submitSearch").prop("disabled", !0))
+                    }).on("keyup", function () {
+                        $this = $(this),
+                        $thisLenght = $this.val().length
+                        //0 != $thisLenght ? ($(".module_header-search-label .icon-search").removeClass("disabled"),
+                        //$("#submitSearch").prop("disabled", !1)) : ($(".module_header-search-label .icon-search").addClass("disabled"),
+                        //$("#submitSearch").prop("disabled", !0))
+                    })
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    14: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    var e = $(".module_most-reader-wrap");
+                    e.length && (e.owlCarousel({
+                        margin: 0,
+                        nav: !1,
+                        dots: !0,
+                        touchDrag: !0,
+                        mouseDrag: !0,
+                        margin: 0,
+                        loop: !1,
+                        items: 1
+                    }),
+                    $(".module-most-reader .swiper-button-next").click(function () {
+                        e.trigger("next.owl.carousel")
+                    }),
+                    $(".module-most-reader .swiper-button-prev").click(function () {
+                        e.trigger("prev.owl.carousel")
+                    }),
+                    e.on("translated.owl.carousel", function (e) {
+                        o.disabledButton(e.item.index, e.item.count)
+                    }))
+                },
+                disabledButton: function (e, t) {
+                    0 === e ? ($(".module-most-reader .swiper-button-prev").addClass("disabled"),
+                    $(".module-most-reader .swiper-button-next").removeClass("disabled")) : e === t - 1 ? ($(".module-most-reader .swiper-button-next").addClass("disabled"),
+                    $(".module-most-reader .swiper-button-prev").removeClass("disabled")) : ($(".module-most-reader .swiper-button-prev").removeClass("disabled"),
+                    $(".module-most-reader .swiper-button-next").removeClass("disabled"))
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    15: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () { }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    16: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    socialTwitter = $(".module_slider-twitter"),
+                    socialTwitter.length && o.createSlider(socialTwitter)
+                },
+                createSlider: function (e) {
+                    e.each(function (e, t) {
+                        var n = $(this);
+                        n.closest(".module-distributor-grid").length ? n.owlCarousel({
+                            margin: 0,
+                            nav: !1,
+                            dots: !0,
+                            touchDrag: !0,
+                            mouseDrag: !0,
+                            margin: 0,
+                            loop: !1,
+                            items: 1
+                        }) : n.owlCarousel({
+                            margin: 0,
+                            nav: !1,
+                            dots: !0,
+                            touchDrag: !0,
+                            mouseDrag: !0,
+                            margin: 8,
+                            loop: !1,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                921: {
+                                    items: 3
+                                }
+                            }
+                        })
+                    })
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    17: [function (e, t, n) {
+        var o, i, l, r, s, a, u = window.innerHeight, d = new function () {
+            return {
+                init: function (e) {
+                    visualObj = $(".module_visual-category-carousel"),
+                    visualObj.length && (d.createSlider(visualObj),
+                    d.checkDimension())
+                },
+                createSlider: function (e) {
+                    e.owlCarousel({
+                        margin: 0,
+                        nav: !1,
+                        dots: !0,
+                        touchDrag: !0,
+                        mouseDrag: !0,
+                        margin: 0,
+                        loop: !1,
+                        items: 1,
+                        onInitialized: function () {
+                            d.writeItemPostion(0, $(".owl-item").size()),
+                            d.arrowVariables(),
+                            d.arrowPosition()
+                        }
+                    }),
+                    $(".module_visual-category .swiper-button-next").click(function () {
+                        $("body").stop().animate({
+                            scrollTop: 0
+                        }, "500", "swing", function () {
+                            e.trigger("next.owl.carousel")
+                        })
+                    }),
+                    $(".module_visual-category .swiper-button-prev").click(function () {
+                        $("body").stop().animate({
+                            scrollTop: 0
+                        }, "500", "swing", function () {
+                            e.trigger("prev.owl.carousel")
+                        })
+                    }),
+                    $(".module-visual-scrollable-item").on("click", function () {
+                        var t = $(this).index();
+                        $(".module_visual-category-carousel").trigger("to.owl.carousel", [window.location.hash.substr(1), 300]);
+                        $(".module_visual-category-carousel").trigger("to.owl.carousel", [window.location.hash.substr(1), 300]);
+                    }),
+                    e.on("translated.owl.carousel", function (e) {
+                        e.item.index;
+                        d.disabledButton(e.item.index, e.item.count),
+                        d.writeItemPostion(e.item.index, e.item.count)
+                    })
+                },
+                selectedItem: function (e) {
+                    $(".module-visual-scrollable-item").removeClass("selected").eq(e).addClass("selected")
+                },
+                writeItemPostion: function (e, t) {
+                    $(".module_visual-category-carousel-position").html(e + 1 + "/" + t)
+                },
+                disabledButton: function (e, t) {
+                    0 === e ? ($(".module_visual-category .swiper-button-prev").addClass("disabled"),
+                    $(".module_visual-category .swiper-button-next").removeClass("disabled")) : e === t - 1 ? ($(".module_visual-category .swiper-button-next").addClass("disabled"),
+                    $(".module_visual-category .swiper-button-prev").removeClass("disabled")) : ($(".module_visual-category .swiper-button-prev").removeClass("disabled"),
+                    $(".module_visual-category .swiper-button-next").removeClass("disabled"))
+                },
+                startScrollBar: function () {
+                    $(".module_visual-category-carousel-nav").mCustomScrollbar({
+                        axis: "x",
+                        theme: "dark",
+                        scrollbarPosition: "outside",
+                        autoHideScrollbar: !0,
+                        advanced: {
+                            autoExpandHorizontalScroll: !0
+                        }
+                    })
+                },
+                destroyScrollBar: function () {
+                    $(".module_visual-category-carousel-nav").mCustomScrollbar("destroy")
+                },
+                checkDimension: function () {
+                    if (visualObj = $(".module_visual-category-carousel"),
+                    visualObj.length) {
+                        $(".module-visual-scrollable-item").outerWidth(),
+                        $(".module-visual-scrollable-item").size(),
+                        $(window).outerWidth(),
+                        $(window).scrollTop();
+                        u = window.innerHeight,
+                        d.arrowVariables(),
+                        d.arrowPosition()
+                    }
+                },
+                checkScroll: function (e) {
+                    if (e.length) {
+                        var t = $(window)
+                          , n = window.innerWidth
+                          , o = t.scrollTop();
+                        n > "960" && (d.arrowVariables(),
+                        o > 0 ? e.addClass("fixed-mode") : e.removeClass("fixed-mode"),
+                        o > a ? e.addClass("hide-mode") : e.removeClass("hide-mode"),
+                        e.hasClass("swiper-button-carousel") && (o > s ? e.addClass("onWhite") : e.removeClass("onWhite")))
+                    }
+                },
+                arrowVariables: function () {
+                    o = $(".module_visual-category-carousel").outerHeight(!0),
+                    i = $("header").outerHeight(!0),
+                    l = $(".swiper-button-carousel").outerHeight(!0),
+                    r = i + o / 2 - l / 2,
+                    s = o - i - r,
+                    a = $(".module-comments").offset().top - r
+                },
+                arrowPosition: function () {
+                    $(".swiper-button-carousel").css({
+                        top: r
+                    })
+                }
+            }
+        }
+        ;
+        t.exports = d
+    }
+    , {}],
+    18: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function () {
+                    $(".newsletter_launcher").on("click", function (e) {
+                        e.preventDefault(),
+                            dataLayer.push({
+                                event: "ga_event",
+                                event_name: "newsletter_start",
+                                event_category: "newsletter",
+                                event_action: "start",
+                                event_label: undefined,
+                                event_value: undefined
+                            });
+                        $(this).hide(),
+                        $(".add_mail").fadeIn(200).removeClass("hide"),
+                        $(".add_mail input").focus(),
+                        $(".add_mail input").select(),
+                        setTimeout(function () {
+                            $(".add_mail .button").removeClass("hide")
+                        }, 250)
+                    }),
+                    $(".add_mail input").hasClass("error") && ($(".newsletter_launcher").hide(),
+                    $(".add_mail").show(),
+                    $(".add_mail .button").removeClass("hide"))
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    19: [function (e, t, n) {
+        var o = new function () {
+            return {
+                split: function (e) {
+                    var t = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                    $.each(e.elements, function (n, o) {
+                        var i, l = $(o);
+                        if (void 0 !== l[0]) {
+                            if ($.each(l[0].parentNode.children, function (e, t) {
+                                l[0] === t && (i = e + 1)
+                            }),
+                            void 0 === window.splitElementInfo)
+                                window.splitElementInfo = [],
+                                window.splitElementInfo.push({
+                                    position: i,
+                                    element: l[0],
+                                    parentElement: l[0].parentNode,
+                                    mediaQuery: e.mediaQuery,
+                                    appendTo: e.appendTo,
+                                    positionTo: e.position
+                                });
+                            else {
+                                var r = !1;
+                                $.each(window.splitElementInfo, function (e, t) {
+                                    return t.element === l[0] ? (r = !0,
+                                    !1) : void 0
+                                }),
+                                r || window.splitElementInfo.push({
+                                    position: i,
+                                    element: l[0],
+                                    parentElement: l[0].parentNode,
+                                    mediaQuery: e.mediaQuery,
+                                    appendTo: e.appendTo,
+                                    positionTo: e.position
+                                })
+                            }
+                            n === e.elements.length - 1 && $.each(window.splitElementInfo, function (e, n) {
+                                t <= window.splitElementInfo[e].mediaQuery ? void 0 !== window.splitElementInfo[e].positionTo ? 1 !== window.splitElementInfo[e].positionTo ? $(window.splitElementInfo[e].appendTo).children(":nth-child(" + window.splitElementInfo[e].positionTo + ")").length > 0 ? $(n.element).insertAfter($(window.splitElementInfo[e].appendTo).children(":nth-child(" + (window.splitElementInfo[e].positionTo - 1) + ")")) : $(n.element).appendTo($(window.splitElementInfo[e].appendTo)) : $(n.element).prependTo($(window.splitElementInfo[e].appendTo)) : $(n.element).appendTo($(window.splitElementInfo[e].appendTo)) : 1 !== n.position ? $(window.splitElementInfo[e].parentElement).children(":nth-child(" + (n.position - 1) + ")").length > 0 ? $(n.element).insertAfter($(window.splitElementInfo[e].parentElement).children(":nth-child(" + (n.position - 1) + ")")) : $(n.element).appendTo(window.splitElementInfo[e].parentElement) : $(n.element).prependTo(window.splitElementInfo[e].parentElement)
+                            })
+                        }
+                    })
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    20: [function (e, t, n) {
+        var o = new function () {
+            return {
+                init: function (e, t) {
+                    function n() {
+                        i.each(function () {
+                            var e = $(this)
+                              , n = e.offset().top
+                              , o = []
+                              , l = 0;
+                            i.each(function () {
+                                var e = $(this)
+                                  , t = e.offset().top;
+                                t === n && o.push(e)
+                            }),
+                            $.each(o, function (e, t) {
+                                t.outerHeight() > l && (l = t.outerHeight())
+                            }),
+                            e.css("height", l),
+                            t === !0 && i.parent().css("height", l)
+                        })
+                    }
+                    $('[class*="col"]').each(function () {
+                        var e = $(this)
+                          , t = (e.parent().outerWidth() - e.parent().width()) / 2
+                          , n = e.offset().left - parseFloat(e.css("margin-left")) - (e.parent().offset().left + t)
+                          , o = e.offset().left - (e.parent().offset().left + t)
+                          , i = e.parent().width() - (o + e.outerWidth())
+                          , l = [];
+                        if (e.css({
+                            "margin-left": "",
+                            "margin-top": ""
+                        }),
+                        e.offset().top - e.parent().offset().top <= parseFloat(e.css("margin-top")) && e.css({
+                            "margin-top": 0
+                        }),
+                        1 >= i ? e.next().css("clear", "left") : e.next().css("clear", ""),
+                        1 >= n) {
+                            e.css("margin-left", 0);
+                            var r = e.offset().top;
+                            e.parent().find('[class*="col"]').each(function () {
+                                var e = $(this)
+                                  , n = e.offset().top
+                                  , o = e.offset().left - (e.parent().offset().left + t)
+                                  , i = e.parent().width() - (o + e.outerWidth());
+                                r === n && l.push([e, i])
+                            }),
+                            e.parent().find('[class*="col"]').each(function () {
+                                var e = $(this)
+                                  , n = e.offset().left - (e.parent().offset().left + t);
+                                e.parent().width() - (n + e.outerWidth());
+                                if (e.offset().top > l[l.length - 1][0].offset().top && e.width() <= l[l.length - 1][1]) {
+                                    void 0 === e.data("prevObject") && e.data("prevObject", e.prev());
+                                    var o = e.offset().left - (e.parent().offset().left + t)
+                                      , i = e.parent().width() - (o + e.outerWidth());
+                                    if (l.push([e, i]),
+                                    1 > i)
+                                        return !1
+                                }
+                            })
+                        }
+                    });
+                    var o = $(".fullHeight");
+                    o.length > 0 && o.css("height", $(window).height());
+                    var i = $('.sameHeight > [class*="col"]');
+                    i.css("height", ""),
+                    null !== e && void 0 !== e || (e = !1),
+                    null !== t && void 0 !== t || (t = !1),
+                    e === !0 ? n() : $("body").hasClass("phoneDevice") || n()
+                }
+            }
+        }
+        ;
+        t.exports = o
+    }
+    , {}],
+    21: [function (e, t, n) {
+        var o = function (e) {
+            $(window).load(function () {
+                e()
+            })
+        };
+        t.exports = o
+    }
+    , {}],
+    22: [function (e, t, n) {
+        var o = function (e) {
+            $(document).ready(function () {
+                e()
+            })
+        };
+        t.exports = o
+    }
+    , {}],
+    23: [function (e, t, n) {
+        var o = function (e) {
+            var t = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+              , n = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            $(window).resize(function () {
+                var o = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                o !== t && ($("body").addClass("resizing"),
+                e(),
+                clearTimeout(window.resizeTimer),
+                window.resizeTimer = setTimeout(function () {
+                    $("body").removeClass("resizing")
+                }, 500),
+                t = o,
+                n = window.innerHeight)
+            }),
+            $(document).ready(function () {
+                e()
+            })
+        };
+        t.exports = o
+    }
+    , {}],
+    24: [function (e, t, n) {
+        var o = function (e) {
+            var t, n, o = !1;
+            $("body").hasClass("ie9") || $("body").hasClass("ie8") || $(window).on("scroll", function () {
+                function i() {
+                    e(),
+                    n = requestAnimationFrame(i)
+                }
+                clearTimeout(t),
+                t = setTimeout(function () {
+                    cancelAnimationFrame(n),
+                    o = !1
+                }, 250),
+                o === !1 && (i(),
+                o = !0)
+            }),
+            $(document).ready(function () {
+                e()
+            })
+        };
+        t.exports = o
+    }
+    , {}]
+}, {}, [2]);

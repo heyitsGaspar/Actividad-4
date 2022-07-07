@@ -1,0 +1,364 @@
+﻿$(document).ready(function () {
+    /*dataLayer_events : */
+    addSectionNumber();
+
+
+    function addSectionNumber() {
+        var sectionCollection = $("#content").children("section");
+
+        for (let i = 0; i < sectionCollection.length; i++ )
+        {
+            $(sectionCollection[i]).attr("data-sectionId", i);
+        }
+
+        console.log(sectionCollection);
+    }
+
+    function normalizeString(string) {
+
+        return string.normalize('NFD').replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi, "$1").normalize();
+
+    }
+    //15 Menu Click
+    $(".menu_click").on('click', function () {
+
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "menu",
+            event_category: "menu",
+            event_action: "main",
+            event_label: title,
+            event_value: undefined,
+            link_text: title,
+            link_url: url,
+            location: "main"
+        });
+
+    })
+
+    //16 Menu Click II
+
+    $(".breadcrumb_link").on('click', function () {
+
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "menu",
+            event_category: "menu",
+            event_action: "breadcrumbs",
+            event_label: title,
+            event_value: undefined,
+            link_text: title,
+            link_url: url,
+            location: "breadcrumbs"
+        });
+
+    })
+
+    //17 Menu Click III - 19 Cambio idioma
+
+    $(".top_right_link").on('click', function () {
+
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "menu",
+            event_category: "menu",
+            event_action: "top right",
+            event_label: title,
+            event_value: undefined,
+            link_text: title,
+            link_url: url,
+            location: "top right"
+        });
+
+        if (title.includes("esp") || title.includes("eng")) {
+
+            var altTitle = '';
+            switch (title) {
+                case "esp":
+                    altTitle = 'eng';
+                    break;
+                case "eng":
+                    altTitle = 'esp';
+                    break;
+            }
+
+            dataLayer.push({
+                event: "ga_event",
+                event_name: "language_change",
+                event_category: "language change",
+                event_action: "< " + title + " > : < " + altTitle + " >",
+                event_label: undefined,
+                event_value: undefined,
+                option: "< " + title + "> : <" + altTitle + " >"
+            });
+        }
+
+    })
+
+    //18 Footer links click
+
+    $(".footer_links_item").on('click', function () {
+
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "menu",
+            event_category: "menu",
+            event_action: "footer",
+            event_label: title,
+            event_value: undefined,
+            link_text: title,
+            link_url: url,
+            location: "footer"
+        });
+
+    })
+
+    //20 21 Carrusel imagenes: desplazamiento y fin
+
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
+    function insertDataLayerCarousel(activeSlide, activeNoteInGallery) {
+        var title = normalizeString(activeNoteInGallery.name);
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "carousel_image_click",
+            event_category: "carousel image click",
+            event_action: activeSlide + " : " + title,
+            event_label: undefined,
+            event_value: undefined,
+            title: activeSlide + " : " + title
+        });
+    }
+
+    function getNoteByActiveSlide(activeSlide) {
+
+        for (let i = 0; i < noteInGalleryCollection.length; i++) {
+            if (activeSlide == i) {
+
+                var note = {
+                    id: noteInGalleryCollection[i].id,
+                    name: decodeHtml(noteInGalleryCollection[i].name)
+                };
+
+            }
+
+        }
+        return note;
+    }
+
+
+    $(".module_visual-category .swiper-button-next").on('click', function () {
+
+        var activeSlide = $(this).attr("data-activeslide");
+        var totalSlide = $(this).attr("data-totalslides");
+        var activeNoteInGallery = getNoteByActiveSlide(activeSlide);
+
+        insertDataLayerCarousel(activeSlide, activeNoteInGallery);
+
+        if (parseInt(activeSlide) + 2 >= parseInt(totalSlide)) {
+            dataLayer.push({
+                event: "ga_event",
+                event_name: "carousel_image_completed",
+                event_category: "carousel image",
+                event_action: "completed",
+                event_label: undefined,
+                event_value: undefined
+            });
+        }
+
+    })
+
+    $(".module_visual-category .swiper-button-prev").on('click', function () {
+
+        var activeSlide = $(this).attr("data-activeslide");
+        var activeNoteInGallery = getNoteByActiveSlide(activeSlide);
+
+        insertDataLayerCarousel(activeSlide, activeNoteInGallery);
+
+    })
+
+    $(".module_visual-category .module-visual-scrollable-item img").on('click', function () {
+
+        var activeSlide = $(this).attr("data-activeslide");
+        var activeNoteInGallery = getNoteByActiveSlide(activeSlide);
+
+        insertDataLayerCarousel(activeSlide, activeNoteInGallery);
+
+    })
+
+    //22 Articulo destacado Home
+
+    $(".highlight-news a").on('click', function () {
+        var sectionId = $(this).closest("section").attr("data-sectionId");
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "highlight_click",
+            event_category: "highlight click",
+            event_action: sectionId + " : " + title,
+            event_label: url,
+            event_value: undefined,
+            link_text: sectionId + " : " + title,
+            link_url: url
+        });
+    })
+
+    //23 Temas destacados
+
+    $(".module_featured-topics a").on('click', function () {
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "featured_topic_click",
+            event_category: "featured topic click",
+            event_action: title,
+            event_label: url,
+            event_value: undefined,
+            link_text: title,
+            link_url: url
+        });
+    })
+
+    //24 Buscador resultados de búsqueda
+
+    // en SearchResults.cshtml
+
+    //25 Newsletter click
+
+    $(".newsletter_launcher").on('click', function () {
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "newsletter_start",
+            event_category: "newsletter",
+            event_action: "start",
+            event_label: undefined,
+            event_value: undefined
+        });
+
+    })
+
+    //26 27 28 Newsletter envio, confirmacion y error 
+
+    // en NewsletterSuscriptionController.js
+
+    //28b Error formulario comentarios
+
+    // en CommentsController.js 
+
+    //29 Articulos relacionados
+
+    $(".related-notes a").on('click', function () {
+        var title = normalizeString($(this).attr("data-title"));
+        var url = $(this).attr("href");
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "related_article_click",
+            event_category: "related article click",
+            event_action: title,
+            event_label: url,
+            event_value: undefined,
+            non_interaction: undefined,
+            link_text: title,
+            link_url: url
+        });
+
+    })
+
+    //30 Infografia : Abrir
+    $(".static-infograph").on('click', function () {
+        var url = $(this).attr("href");
+        var title = normalizeString($(this).attr("data-title"));
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "infographic_open",
+            event_category: "infographic open",
+            event_action: title,
+            event_label: url,
+            event_value: undefined,
+            link_text: title,
+            link_url: url
+        });
+
+    })
+
+    //31 32 33 Comentar : responder, enviar y confirmacion
+
+    // CommentsController.js
+
+    //34 Compartir RRSS 
+
+    $(".shareButton.twitter a").on('click', function () {
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "share",
+            event_category: "share",
+            event_action: "twitter",
+            event_label: undefined,
+            event_value: undefined,
+            option: "twitter"
+        });
+
+    })
+    $(".shareButton.facebook a").on('click', function () {
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "share",
+            event_category: "share",
+            event_action: "facebook",
+            event_label: undefined,
+            event_value: undefined,
+            option: "facebook"
+        });
+
+    })
+    $(".shareButton.linkedin a").on('click', function () {
+
+        dataLayer.push({
+            event: "ga_event",
+            event_name: "share",
+            event_category: "share",
+            event_action: "linkedin",
+            event_label: undefined,
+            event_value: undefined,
+            option: "linkedin"
+        });
+    })
+
+    //35 Encuesta externa 
+    //40 Scroll 
+
+    //desde GTM
+
+    //41 RRSS click 
+
+    //desde GTM
+
+    //42 43 44 Videos YouTube
+
+    //desde GTM
+});

@@ -1,0 +1,86 @@
+﻿angular.module('imnovationApp').controller('NewsletterSubscriptionController', function ($scope, $http, $filter, $window) {
+    $scope.newMember = { Culture: culture };
+    $scope.emailFormat = /^[a-z]+[a-z0-9._]+[a-z0-9_]+@[a-z]+\.[a-z.]{2,8}$/;
+    $scope.btnSendText = Send;
+    $scope.trySend = false;
+    $scope.sent = false;
+    $scope.exists = false;
+
+
+    $scope.addSubscription = function (valid) {
+        $scope.trySend = true;
+        if (valid) {
+            $scope.btnSendText = Sending;
+            $http.post('/umbraco/Api/NewsletterSubscription/AddSubscription', $scope.newMember)
+                .success(function (data, status, headers, config) {
+                    if (data.message == 'Existente') {
+                        $scope.exists = true
+                    } else {
+
+                        $window.dataLayer.push({
+                            event: "ga_event",
+                            event_name: "newsletter_submit",
+                            event_category: "newsletter",
+                            event_action: "submit",
+                            event_label: undefined,
+                            event_value: undefined
+                        });
+                        $scope.sent = true;
+
+                        $window.dataLayer.push({
+                            event: "ga_event",
+                            event_name: "newsletter_confirmation",
+                            event_category: "newsletter",
+                            event_action: "confirmation",
+                            event_label: undefined,
+                            event_value: undefined
+                        });
+                    }
+                }).error(function (data, status, headers, config) {
+                    $scope.btnSendText = $sce.trustAsHtml(SendError);
+                });
+        } 
+    };
+
+    $scope.addDataLayerEmailError = function (msg) {
+
+        $window.dataLayer.push({
+            event: "ga_event",
+            event_name: "error_form",
+            event_category: "newsletterSubscriptionForm",
+            event_action: "email",
+            event_label: msg,
+            event_value: undefined,
+            location: "email",
+            message: msg
+        });
+    }
+
+    $scope.addDataLayerChkError = function (msg) {
+
+        $window.dataLayer.push({
+            event: "ga_event",
+            event_name: "error_form",
+            event_category: "newsletterSubscriptionForm",
+            event_action: "data protection check",
+            event_label: msg,
+            event_value: undefined,
+            location: "data protection check",
+            message: msg
+        });
+    }
+
+    // $scope.addSubscription2 = function (valid) {
+    //     $scope.trySend = true;
+    //     var member = { Id: 0, Email:""}
+    //    if (valid) {
+    //        $scope.btnSendText = Sending;
+    //        $http.post('/umbraco/Api/NewsletterSubscription/RemoveSubscription', jquery. member)
+    //            .success(function (data, status, headers, config) {
+    //                $scope.sent = true;
+    //            }).error(function (data, status, headers, config) {
+    //                $scope.btnSendText = SendError;
+    //            });
+    //    }
+    //};
+});

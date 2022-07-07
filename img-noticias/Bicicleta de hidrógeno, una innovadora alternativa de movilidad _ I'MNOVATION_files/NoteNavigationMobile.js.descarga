@@ -1,0 +1,28 @@
+﻿$(document).ready(function () {
+    var categoryFixedNav = $(".module_visual-category-fixedNav");
+    var carouselFixedNav = $(".carousel-fixedNav");
+    var hidePosition = $(".module_tabsList").offset().top;
+    var noteActualPosition;
+
+
+    $(window).scroll(function () {
+        if (categoryFixedNav.length > 0) {
+            noteActualPosition = categoryFixedNav.offset().top;
+
+            if (noteActualPosition > hidePosition) {
+                categoryFixedNav.addClass("hide-me");
+            } else { categoryFixedNav.removeClass("hide-me"); }
+        }
+
+        if (carouselFixedNav.length >0 ) {
+        noteActualPosition = carouselFixedNav.offset().top;
+
+        console.warn("divToHideActualPosition:" + noteActualPosition);
+
+            if (noteActualPosition > hidePosition) {
+                carouselFixedNav.addClass("hide-me");
+            } else { carouselFixedNav.removeClass("hide-me"); }
+        }
+    });
+
+});

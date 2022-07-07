@@ -1,0 +1,55 @@
+﻿function NoteGalleryControllerController($scope, $http, $filter, $window) {
+    $scope.activeSlide = 0;
+    $scope.NotesCollection = noteInGalleryCollection;
+
+
+    $scope.$watch('activeSlide', function (newValue, oldValue) {
+        $window.location.hash = newValue;
+    });
+
+    $scope.setSlide = function (indexSlide) {
+
+        $scope.activeSlide = indexSlide;
+
+    };
+
+
+    $scope.changeSlide = function (slideOffeset, slidesCount) {
+
+        $scope.activeSlide += slideOffeset;
+
+        if ($scope.activeSlide < 0) {
+            $scope.activeSlide = 0;
+        }
+
+        if ($scope.activeSlide >= slidesCount) {
+            $scope.activeSlide = slidesCount - 1;
+        }
+
+    };
+
+
+    $scope.isLast = function (currentSlide, slidesCount) {
+        if (currentSlide + 1 >= slidesCount) {
+            return 'disabled';
+        } else {
+            return '';
+        }
+    }
+    $scope.isFirst = function (currentSlide, slidesCount) {
+        if (currentSlide - 1 < 0) {
+            return 'disabled';
+        } else {
+            return '';
+        }
+    }
+
+    $scope.prevSlide = function () {
+        $scope.direction = 'left';
+        $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
+    };
+    $scope.nextSlide = function () {
+        $scope.direction = 'right';
+        $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
+    };
+}

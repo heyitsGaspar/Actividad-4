@@ -1,0 +1,38 @@
+﻿/* ---------------------------------------------------------------------------
+
+logoAnim
+
+--------------------------------------------------------------------------- */
+var os_timer
+var logoAnim = new function () {
+    return {
+        init: function () {
+            logoAnim.start()
+        },
+
+        start: function () {
+            // Animacion
+            // Limpiar cola de posibles animaciones pendientes
+            $('.os_logo_o, .os_logo_lines, .os_logo_sparks, .os_logo_o_red').finish();
+
+            // Posicion inicial de elementos
+            $('.os_logo_lines').css({ 'top': '-100%', opacity: 0 });
+            $('.os_logo_sparks').hide();
+            $('.os_logo_o').css({ 'height': '82%' });
+            $('.os_logo_o_red').css({ 'top': '-16%' }).hide();
+
+            // Animacion
+            $('.os_logo_lines').animate({ 'top': '5%', opacity: 1 }, 400).animate({ 'top': '-16%', opacity: 1 }, 800, 'easeOutBounce');
+            $('.os_logo_o').delay(550).animate({ 'top': '0%' }, 40).animate({ 'top': '-16%' }, 900, 'easeOutElastic').animate({ 'height': '50%' }, 400, 'easeInCirc');
+            $('.os_logo_o_red').delay(1500).fadeIn(100);
+            $('.os_logo_sparks').css({ 'top': '-16%' }).delay(2000).fadeIn(300).fadeOut(500).fadeIn(300).fadeOut(500).fadeIn(300).delay(400).fadeOut(500);
+            $('.os_logo_o').delay(2600).animate({ 'height': '82%' }, 600, 'easeInCirc');
+            $('.os_logo_o_red').delay(3700).fadeOut(100);
+            $('.os_logo_o').delay(400).animate({ 'top': '0%' }, 1200, 'easeOutElastic');
+            $('.os_logo_lines').delay(3700).animate({ 'top': '17%', opacity: 0 }, 400, 'easeInCirc');
+
+            setTimeout(function () { logoAnim.start() }, 9000);
+        }
+    };
+};
+

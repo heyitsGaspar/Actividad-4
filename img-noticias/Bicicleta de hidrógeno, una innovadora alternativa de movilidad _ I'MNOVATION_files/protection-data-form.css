@@ -1,0 +1,383 @@
+﻿.data-protection__form-section {
+    padding: 10%;
+}
+
+.privacy-policy-form__fieldset {
+    border: none
+}
+
+.text_input {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.privacy-policy-form__fieldset .text_input .taglabel {
+    padding-bottom: 8px;
+    font-weight: bold
+}
+
+    .text_input label {
+        padding-bottom: 3px
+    }
+
+    .text_input input.protection-data__input {
+        border: 1px solid gray;
+        width: fit-content;
+        max-width: 300px;
+        border-radius: 4px;
+    }
+
+.data-form__yes-label {
+    margin-right: 10px;
+}
+
+.form-section__radio {
+}
+
+.form-section__radio,
+.form-section__multiple-wrapper, .text_input.form-section__aditional-info:not(.form-section__aditional-info__first):not(.form-section__aditional-second) {
+    margin-top: 45px;
+}
+
+.form-section__aditional-info__first {
+    margin-top: 0px
+}
+
+.form-section__multiple-select {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px
+}
+
+    .form-section__multiple-select label {
+        margin-left: 10px
+    }
+
+
+.form-section__textarea {
+    min-height: 140px;
+    width: 250px;
+    padding: 10px;
+    border: solid 1px #d8d8d8;
+    background-color: transparent;
+    font-family: inherit;
+    margin-top: 20px;
+    text-align: start
+}
+
+.form-section__accept-info-check {
+    font-size: 11px
+}
+
+.form-section__accept-info {
+    margin-top: 40px;
+    font-size: 11px
+}
+
+.form-section__btn {
+    background-color: red;
+    color: white;
+    margin-top: 20px;
+    font-size: 10px;
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    min-width: 120px;
+    border: 1px solid black;
+    box-shadow: none
+}
+
+    .form-section__btn:focus {
+        border: none !important;
+        outline: 1px solid transparent;
+    }
+
+ .form-section__btn:active {
+    border: none !important
+}
+
+    .data-form__upload-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+.form-section__file-btn {
+    width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px
+}
+
+input[type="file" i]::-webkit-file-upload-button {
+    background-color: transparent;
+    text-transform: uppercase;
+    color: white;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+}
+
+.file-btn-visual-trigger {
+    background-color: red !important;
+    color: white;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: fit-content;
+    border-radius: 30px;
+    margin-top: 10px;
+    text-transform: uppercase
+}
+
+.file-btn-trigger__second {
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.file-btn-visual-trigger:hover {
+    -webkit-box-shadow: 0 0 11px rgba(33,33,33,.5);
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+.file-input-upload__list {
+    margin-top: 20px
+}
+
+
+.form-section__cancel {
+    background-color: white;
+    color: black;
+    margin-right: 20px;
+    transition: box-shadow 0.7s linear;
+    height: 40px
+}
+
+    .form-section__cancel:hover {
+        background-color: white;
+        /*border: 1px solid black;*/
+        transition: border 1s;
+        transition-timing-function: ease;
+        box-shadow: 0px 0px 0px 2px #c6c6c6;
+        transition: box-shadow 0.7s linear;
+    }
+
+.form-section__send {
+    height: 40px
+}
+
+.form-section__tooltip {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: -4px;
+}
+
+    .form-section__tooltip .form-section__trigger-icon {
+        display: block;
+        margin-left: 10px;
+        border-radius: 100%;
+        border: 1px solid;
+        width: 14px;
+        height: 14px;
+        text-align: center;
+        color: #ff0000;
+        line-height: 12px;
+    }
+
+
+
+    .form-section__tooltip .form__tooltip__info {
+        display: none;
+    }
+
+    .form-section__tooltip .form-section__trigger-icon:hover + .form__tooltip__info {
+        display: block;
+        border: 1px solid #c6c6c6;
+        padding: 10px;
+        background: #ffffff;
+        position: absolute;
+        width: 348px;
+        max-width: 400px;
+        z-index: 222;
+        margin-top: 0;
+        left: 100%;
+        margin-left: 15px;
+        top: -100%;
+    }
+
+        .form-section__tooltip .form-section__trigger-icon:hover + .form__tooltip__info::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-top: 1px solid #c6c6c6;
+            border-left: 1px solid #c6c6c6;
+            z-index: 223;
+            position: absolute;
+            left: -5px;
+            background: #fff;
+            transform: rotate(-45deg);
+            top: 15px;
+        }
+
+
+.form__bold-title {
+    font-weight: 600;
+    margin-bottom:10px
+}
+
+.field.captcha {
+    margin: 20px 8%;
+}
+
+.form-section__multiple-select.form-section__accept-info {
+    margin-bottom: 4%
+}
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: block;
+}
+
+.protection-data__captcha {
+    margin-left: -9%;
+}
+
+.success-modal__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+    .success-modal__content p {
+        margin-bottom: 40px;
+        margin-top: 60px
+    }
+
+.modal-wrapper.modal-wrapper-no-overflow {
+    overflow-y: hidden !important
+}
+
+.update-files__list li {
+    margin-bottom: 10px
+}
+
+.form-section__accept-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.form-section__accept-info-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-terms-checkbox-link:hover {
+    color: red
+}
+
+
+.module-EXP__privacy-form__response-content__error {
+    color: red !important;
+    font-size: 11px;
+    max-width: 95vw
+}
+
+.form-data__error-wrapper {
+    max-width: 95vw
+}
+
+/*MEDIA QUERIES*/
+@media all and (min-width: 400px) {
+    .text_input input.protection-data__input {
+        max-width: 100%;
+        min-width: 80%
+    }
+
+    .form-section__textarea {
+        min-height: 170px;
+        width: 80%;
+        max-width: 750px
+    }
+
+    .form-section__radio,
+    .form-section__multiple-wrapper, .text_input.form-section__aditional-info:not(.form-section__aditional-info__first):not(.form-section__aditional-second) {
+        margin-top: 50px;
+    }
+}
+
+@media all and (min-width: 700px) {
+
+    .form-section__radio,
+    .form-section__multiple-wrapper, .text_input.form-section__aditional-info:not(.form-section__aditional-info__first):not(.form-section__aditional-second) {
+        margin-top: 70px;
+    }
+
+    .form-section__textarea {
+        padding: 16px;
+    }
+
+    .form-section__multiple-wrapper__first {
+        margin-top: 55px
+    }
+}
+
+@media all and (max-width: 600px) {
+
+    .data-protection__form-section {
+        padding: 4%;
+    }
+
+    .text_input.form-section__aditional-info {
+        align-items: center
+    }
+
+    .form-section__tooltip .form-section__trigger-icon:hover + .form__tooltip__info {
+        width: 300px;
+        max-width: 250px;
+        left: -600%;
+        top: 112%;
+    }
+
+        .form-section__tooltip .form-section__trigger-icon:hover + .form__tooltip__info::before {
+            left: 30px;
+            top: -4px;
+            transform: rotate(43deg);
+        }
+}
+
+
+@media all and (max-width: 414px) {
+
+    .form-section__tooltip .form-section__trigger-icon:hover + .form__tooltip__info {
+        width: 210px;
+        max-width: 190px;
+        left: -500%;
+        top: 112%;
+    }
+
+    .form-section__multiple-select {
+        width: max-content;
+        max-width: 76%;
+    }
+
+
+    .form-section__radio, .form-section__multiple-wrapper, .text_input.form-section__aditional-info:not(.form-section__aditional-info__first):not(.form-section__aditional-second) {
+        width: 92vw;
+    }
+
+    .form-section__rights-with-tooltip .form-section__multiple-select > label {
+        max-width: 220px;
+    }
+}

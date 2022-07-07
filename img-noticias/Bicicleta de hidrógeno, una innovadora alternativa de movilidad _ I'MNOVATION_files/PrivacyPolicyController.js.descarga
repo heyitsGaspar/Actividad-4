@@ -1,0 +1,191 @@
+﻿'use strict';
+
+angular.module('imnovationApp').controller('PrivacyPolicyController', ['$scope', 'vcRecaptchaService', '$http',
+    function ($scope, vcRecaptchaService, $http) {
+
+        $scope.hasError = false;
+        $scope.responseCaptcha = null;
+        $scope.captchaWidgetId = null;
+        $scope.representedFile = null;
+        $scope.additionalFiles = [];
+
+        $scope.dataForm = {
+            name: "",
+            surname: "",
+            dni: "",
+            mail: "",
+            ownRight: "",
+            nameRepresented: "",
+            surnameRepresented: "",
+            representedFiles: "",
+            candidateOption: "",
+            employeeOption: "",
+            supplierOption: "",
+            clientOption: "",
+            partnerOption: "",
+            visitorOption: "",
+            otherOption: "",
+            otherOptionComment: "",
+            constructionOption: "",
+            concessionsOption: "",
+            servicesOption: "",
+            waterOption: "",
+            energyOption: "",
+            realStateOption: "",
+            bodegasOption: "",
+            bestinverOption: "",
+            accionaSAOption: "",
+            accessRightLevel: "",
+            rectificationLevel: "",
+            erasureLevel: "",
+            limitationLevel: "",
+            portabilityLevel: "",
+            opossitionLevel: "",
+            additionalComment: "",
+            acceptInfo: "",
+        };
+
+        $scope.sendFormData = function (form) {
+
+            form.$submitted = true;
+
+            if (form.$valid) {
+
+                $scope.resetForm(form);
+                $scope.openConfirmationPopUp();
+
+                form.$submitted = false;
+
+                var payload = new FormData();
+
+                payload.append("name", $scope.dataForm.name);
+                payload.append("surname", $scope.dataForm.surname);
+                payload.append("dni", $scope.dataForm.dni);
+                payload.append("mail", $scope.dataForm.mail);
+                payload.append("ownRight", $scope.dataForm.ownRight);
+                payload.append("nameRepresented", $scope.dataForm.nameRepresented);
+                payload.append("surnameRepresented", $scope.dataForm.surnameRepresented);
+
+                for (var i = 0; i < $scope.additionalFiles.length; i++) {
+                    payload.append("file" + i, $scope.additionalFiles[i]);
+                }
+                payload.append("fileRepresented", $scope.representedFile);
+
+                payload.append("activities", [$scope.dataForm.candidateOption, $scope.dataForm.employeeOption, $scope.dataForm.supplierOption,
+                $scope.dataForm.clientOption, $scope.dataForm.partnerOption, $scope.dataForm.visitorOption,
+                $scope.dataForm.otherOption, $scope.dataForm.otherOptionComment]);
+                payload.append("accionaRelationship", [$scope.dataForm.constructionOption, $scope.dataForm.concessionsOption,
+                $scope.dataForm.waterOption, $scope.dataForm.servicesOption, $scope.dataForm.energyOption,
+                $scope.dataForm.realStateOption, $scope.dataForm.bodegasOption, $scope.dataForm.bestinverOption, $scope.dataForm.accionaSAOption]);
+                payload.append("rights", [$scope.dataForm.accessRightLevel, $scope.dataForm.rectificationLevel, $scope.dataForm.erasureLevel,
+                $scope.dataForm.limitationLevel, $scope.dataForm.portabilityLevel, $scope.dataForm.opossitionLevel]);
+                payload.append("additionalComment", $scope.dataForm.additionalComment);
+
+                $http({
+                    url: '/Umbraco/Api/PrivacyPolicyForm/HandlePrivacyPolicyForm',
+                    method: 'POST',
+                    headers: { 'Content-Type': undefined },
+                    data: payload,
+                    transformRequest: angular.identity
+                })
+            } else {
+                $scope.hasError = true;
+            }
+        }
+
+        $scope.resetForm = function () {
+
+            $scope.PrivacyPolicyForm.$setPristine();
+            $scope.hasError = false;
+            $scope.PrivacyPolicyForm.$submitted = false;
+
+            $scope.dataForm = {};
+            $scope.dataForm.accessRightLevel = "";
+            $scope.dataForm.rectificationLevel = "";
+            $scope.dataForm.erasureLevel = "";
+            $scope.dataForm.limitationLevel = "";
+            $scope.dataForm.portabilityLevel = "";
+            $scope.dataForm.opossitionLevel = "";
+            $scope.dataForm.ownRight = "";
+
+            if ($scope.captchaWidgetId != null) {
+                vcRecaptchaService.reload($scope.captchaWidgetId);
+            }
+            $scope.representedFile = null;
+            $scope.additionalFiles = [];
+        }
+
+        $scope.captchaModel = {
+            key: '6Lf8xhcUAAAAAOBO9ZPffwvEGS8LMvrhouWedskF'
+        }
+
+        $scope.setCaptchaResponse = function (response) {
+            $scope.response = response;
+        }
+        $scope.setCaptchaWidgetId = function (widgetId) {
+            $scope.captchaWidgetId = widgetId;
+        }
+        $scope.captchaExpiration = function () {
+            vcRecaptchaService.reload($scope.captchaWidgetId);
+            $scope.response = null;
+        }
+
+        $scope.uploadRepresentedFile = function () {
+
+            var representedFileInput = document.getElementById('RepresentedFileInput');
+
+            representedFileInput.click();
+
+            if (representedFileInput.files.length === 0) return;
+
+            $scope.representedFile = representedFileInput.files[0];
+            angular.element(representedFileInput).val(null);
+
+            $scope.$apply();
+        }
+
+        $scope.uploadAdditionalFile = function () {
+
+            var additionalFileInput = document.getElementById('AdditionalFileInput');
+
+            additionalFileInput.click();
+
+            if (additionalFileInput.files.length === 0) return;
+
+            $scope.additionalFiles.push(additionalFileInput.files[0]);
+            angular.element(additionalFileInput).val(null);
+
+            $scope.$apply();
+        }
+
+        $scope.openModalOverlay = function (needToOpen) {
+            if (needToOpen) {
+                $('#data-protection-popup__overlay').removeClass("hidden").addClass("shown")
+            }
+
+            else {
+                $('#data-protection-popup__overlay').removeClass("shown").addClass("hidden")
+            }
+        };
+
+        $scope.openDataProtectionPopUp = function () {
+            $scope.openModalOverlay(true);
+            $('#data-protection-popup__modal').removeClass("hidden").addClass("shown");
+        };
+
+        $scope.openConfirmationPopUp = function () {
+            $scope.openModalOverlay(true);
+            $('#form-success-popup').removeClass("hidden").addClass("shown");
+        };
+
+        $scope.closeDataProtectionPopUp = function (isConfirmationModal) {
+            $scope.openModalOverlay(false);
+            if (isConfirmationModal) {
+                $('#form-success-popup').removeClass("shown").addClass("hidden");
+            }
+
+            else {
+                $('#data-protection-popup__modal').removeClass("shown").addClass("hidden");
+            }
+        };
+    }]);

@@ -1,0 +1,87 @@
+﻿angular.module('imnovationApp').controller('CommentsController', function ($scope, $http, $filter, $window) {
+    $scope.comments = [];
+    $scope.btnSendCommentText = SendComment;
+    $scope.CommentsCount = null;
+    $scope.newComment = { "NoteId": noteId };
+    $scope.sent = false;
+    $scope.tryCommentSend = false;
+
+
+    $scope.getComments = function () {
+        $http.get("/umbraco/Api/Comments/GetCommentsByNoteId/" + noteId).success(
+            function (data, status, headers, config) {
+                $scope.comments = data;
+                $scope.CommentsCount = $scope.GetCommentsCount($scope.comments)
+            });
+    };
+
+    $scope.GetCommentsCount = function (comments) {
+        var count = comments.length;
+        for (var index = 0; index < comments.length; index++) {
+            if (comments[index].Comments) {
+                count += $scope.GetCommentsCount(comments[index].Comments);
+            }
+        }
+        return count;
+    }
+
+    $scope.setCommentParent = function (parentId) {
+        $scope.newComment.ParentCommentId = parentId;
+
+        $window.dataLayer.push({
+            event: "ga_event",
+            event_name: "comment_start",
+            event_category: "comment",
+            event_action: "start",
+            event_label: undefined,
+            event_value: undefined
+        });
+    };
+
+    $scope.addComment = function (valid) {
+        $scope.tryCommentSend = true;
+
+        $window.dataLayer.push({
+            event: "ga_event",
+            event_name: "comment_submit",
+            event_category: "comment",
+            event_action: "submit",
+            event_label: undefined,
+            event_value: undefined
+        });
+
+        if (valid) {
+            $scope.btnSendCommentText = SendingComment;
+            $http.post('/umbraco/Api/Comments/AddComment', $scope.newComment)
+                .success(function (data, status, headers, config) {
+                    $scope.sent = true;
+                    $window.dataLayer.push({
+                        event: "ga_event",
+                        event_name: "comment_confirmation",
+                        event_category: "comment",
+                        event_action: "onfirmation",
+                        event_label: undefined,
+                        event_value: undefined
+                    });
+                }).error(function (data, status, headers, config) {
+                    $scope.btnSendCommentText = SendError;
+                });
+        }
+    };
+
+    $scope.getComments();
+
+    $scope.addDataLayerChkError = function (msg) {
+
+        $window.dataLayer.push({
+            event: "ga_event",
+            event_name: "error_form",
+            event_category: "comments form",
+            event_action: "data protection check",
+            event_label: msg,
+            event_value: undefined,
+            location: "data protection check",
+            message: msg
+        });
+    }
+});

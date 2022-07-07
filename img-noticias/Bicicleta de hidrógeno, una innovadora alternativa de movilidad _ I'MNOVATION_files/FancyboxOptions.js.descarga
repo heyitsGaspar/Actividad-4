@@ -1,0 +1,11 @@
+﻿$(document).ready(function () {
+    $('.fancybox-infografia').fancybox(
+        {
+            type: 'ajax',
+            autoDimensions: false,
+            autoScale: true,
+            scrolling: 'yes',
+            dataType: 'html'
+        }
+    );
+});

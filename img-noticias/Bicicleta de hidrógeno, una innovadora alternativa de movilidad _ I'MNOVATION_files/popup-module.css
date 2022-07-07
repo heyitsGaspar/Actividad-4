@@ -1,0 +1,129 @@
+﻿/*page overlay :*/
+
+.modal-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 400;
+    opacity: 1;
+    background-color: rgba(0,0,0,0.7);
+}
+
+    .modal-overlay.hidden {
+        display: none;
+    }
+
+    .modal-overlay.shown {
+        display: block;
+    }
+
+.fancy .modal-overlay {
+    background-color: transparent;
+}
+/*modal sizing and positioning:*/
+
+.modal {
+    display: block;
+    border: 1px solid #bfbfbf;
+    position: fixed;
+    background: #fff;
+    width: 60%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    top: 20%;
+    bottom: 20%;
+    opacity: 1;
+}
+
+    .modal.hidden {
+        display: none;
+    }
+
+    .modal.shown {
+        display: block;
+    }
+
+.fancy .modal {
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 93%;
+}
+
+.modal .modal-wrapper {
+    display: block;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    padding-right: 15px;
+}
+
+    /* scrollbars: */
+    .modal .modal-wrapper::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .modal .modal-wrapper::-webkit-scrollbar-track {
+        background-color: #f0f0f0;
+    }
+
+    .modal .modal-wrapper::-webkit-scrollbar-thumb {
+        background-color: #ff0000;
+    }
+/*close button */
+.modal .modal-close-btn {
+    display: block;
+    position: absolute;
+    right: 27px;
+    top: 20px;
+}
+
+    .modal .modal-close-btn a {
+        color: #ff0000;
+        cursor: pointer;
+    }
+
+
+
+/* : Mobile resizing */
+
+@media screen and (max-width:40em) {
+
+    .modal {
+        width: 90%;
+        top: 5%;
+        word-break: break-all;
+        bottom: 5%;
+    }
+}
+.modal-close-btn .icon-close:before {
+    display:none;
+}
+
+.modal-close-btn .icon-close svg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+}
+
+    .modal-close-btn .icon-close svg path {
+        stroke:#ff0000;
+    }
+
+
+
+.linkModal.filled-box:before {
+    display: inline-block;
+    content: '';
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+    background: #ff0000;
+}

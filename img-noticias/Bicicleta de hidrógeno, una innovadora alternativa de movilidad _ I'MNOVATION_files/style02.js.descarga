@@ -1,0 +1,73 @@
+$(document).ready(function () {
+    //por defecto el modal esta deshabilitado
+    //var isPopUpOpen = false;
+    if (sessionStorage.getItem("isPopUpOpen") == null || sessionStorage.getItem("isPopUpOpen")=="undefined" )
+    {
+        sessionStorage.setItem("isPopUpOpen", "0");
+    }
+
+    //langPrefix; para la carga de la plantilla; almacenado en Main 
+    var langPrefix = "";
+    if (lang == "en")
+    { langPrefix = "/"; }
+    else { langPrefix = "/es/"; }
+
+    //checkScroll();
+    //checkLeaving();
+
+    function checkScroll() {
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > ($(document).height() * 0.3) && sessionStorage.getItem("isPopUpOpen") == "0") {
+                sessionStorage.setItem("isPopUpOpen","1");
+                startFancybox();
+            } else { }
+
+        });
+    } 
+    var startFancybox = function () {
+        // cargamos scrollPopUp con las aiguientes opciones
+        $.fancybox({
+            'href': langPrefix +'OnScrollPopUp',
+            'type': 'iframe',
+            'width': '100%',
+            'height': '100%',
+            'autoScale': false,
+            'autoDimensions': false,
+            'scrolling': 'no',
+            'hideOnOverlayClick': false,
+            'iframe': { 'scrolling': 'no' }
+        })
+    }
+
+    //onExitPopup init : 
+
+    function checkLeaving() {
+        if (sessionStorage.getItem("isPopUpOpen") != "1") {
+            // ya ha entrado; no mostramos más el popUp ...
+
+            // iniciallizamos bio exit popup con las siguientes opciones:
+            bioEp.init({
+                html: '<iframe id="popup_iframe" src="' + langPrefix + 'OnExitPopUp" scrolling="no"></iframe>',
+                css: '#popup_iframe{ width:100%; height:100%;border:none;}' +
+                '#bio_ep {transform:none;top:0;left:0;}' +
+                '#bio_ep_bg{background-color:#32353e;opacity:1!important}' +
+                '#bio_ep {width: 100%; height: 100%; color: #333; background-color: #fafafa; text-align: center;}' +
+                '#bio_ep_close {position: fixed; margin: 0; width: 40px; height: 40px; color: #c6c6c6;' +
+                'font-size: 17px;font-weight: lighter;text-align: center;border-radius: 100%; background-color: #32353e;' +
+                'cursor: pointer; border: 2px solid; line-height: 40px; z-index: 200; top: 40px; left: 90%;} ',
+                cookieExp: 60
+            });
+        }
+    }
+})
+
+document.addEventListener("DOMContentLoaded", function () {
+    var consentButton = document.getElementById("CookieDeclarationChangeConsentChange");
+    if (consentButton) {
+        consentButton.addEventListener("click", toogleCookieBanner);
+    }
+
+    function toogleCookieBanner(event) {
+        firstTime = 1;
+    }
+});

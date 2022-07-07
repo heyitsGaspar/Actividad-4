@@ -1,0 +1,32 @@
+﻿$(document).ready(function () {
+
+    $(document).on("click", "a.linkModal", function () {
+
+        console.log("clicked");
+
+        var popupId = $(this).attr('data-popup-id');
+        // Get the modal
+        var modalContainer = $('#modalLopd' + popupId + '.modal-overlay');
+
+        // Get the button that opens the modal
+        var openerBtn = this;
+
+        // Get the <span> element that closes the modal
+        var closerBtn = $('#closeModal' + popupId);
+
+        $(modalContainer).removeClass("hidden").addClass("shown");
+        $(modalContainer).children(".modal").removeClass("hidden").addClass("shown");
+
+        // When the user clicks on <span> (x), close the modal
+        $(document).on("click", "#closeModal" + popupId, function () {
+            //modalContainer.style.display = "none";
+            $(modalContainer).removeClass("shown").addClass("hidden");
+            $(modalContainer).removeClass("shown").addClass("hidden");
+        });
+
+
+    });
+
+});
+
+
